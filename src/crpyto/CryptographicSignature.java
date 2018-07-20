@@ -51,6 +51,12 @@ public class CryptographicSignature {
 		}
 	}
 	
+	public static byte[] svaePublicKey(PublicKey pubKey) {
+		X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(
+				pubKey.getEncoded());
+		return x509EncodedKeySpec.getEncoded();
+	}
+	
 	public static void savePrivateKey(String file, PrivateKey privKey) {
 		PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(
 				privKey.getEncoded());
@@ -71,6 +77,18 @@ public class CryptographicSignature {
 			byte[] encoded = new byte[(int) f.length()];
 			fis.read(encoded);
 			fis.close();
+			KeyFactory keyFactory = KeyFactory.getInstance(TYPE);
+			X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(
+					encoded);
+			PublicKey pubKey = keyFactory.generatePublic(publicKeySpec);
+			return pubKey;
+		}catch(Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	public static PublicKey loadPublicKey(byte[] encoded) {
+		try {
 			KeyFactory keyFactory = KeyFactory.getInstance(TYPE);
 			X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(
 					encoded);

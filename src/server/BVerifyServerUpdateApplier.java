@@ -11,8 +11,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest;
-
 /**
  * This is a single threaded applier that 
  * stages updates. After TARGET_BATCH_SIZE updates 
@@ -28,18 +26,21 @@ public class BVerifyServerUpdateApplier implements Runnable {
 	/**
 	 * Parameters - batching, impact performance
 	 */
+	private int totalLogs;
+	private int totalLogStatements;
 	private int totalUpdates;
 	private int uncommittedUpdates;
 	private final int TARGET_BATCH_SIZE;
-	// TODO also add a timeout so that things eventually get
+	
+	// TODO also add a timeout so that things always eventually get
 	//			committed
 	
 	/**
 	 * Shared data!
 	 */
 	private final ReadWriteLock lock;
-	private final BlockingQueue<PerformUpdateRequest> updates;
-	private final ADSManager adsManager;
+	private final BlockingQueue<Update> updatesToCommit;
+	private final LogManager logManager;
 	
 	private boolean shutdown;
 	
@@ -48,34 +49,39 @@ public class BVerifyServerUpdateApplier implements Runnable {
 	 */
 	private final ExecutorService workers = Executors.newCachedThreadPool();
 		
-	public BVerifyServerUpdateApplier(ReadWriteLock lock, BlockingQueue<PerformUpdateRequest> updates, 
-			ADSManager adsManager, 
+	public BVerifyServerUpdateApplier(ReadWriteLock lock, BlockingQueue<Update> updatesToCommit,
+			LogManager logManager, 
 			int batchSize) {
 		this.lock = lock;
-		this.updates = updates;
-		this.adsManager = adsManager;
+		this.updatesToCommit = updatesToCommit;
+		this.logManager = logManager;
 		this.TARGET_BATCH_SIZE = batchSize;
+		this.totalLogs = 0;
+		this.totalLogStatements = 0;
 		this.totalUpdates = 0;
 		this.uncommittedUpdates = 0;
 		this.shutdown = false;
 
 		try {
-			// process any initializing updates - if any!
-			int initializingUpdates = 0;
-			logger.log(Level.INFO, "... processing "+this.updates.size()+" initial updates");
-			while(!this.updates.isEmpty()) {
-				PerformUpdateRequest request = this.updates.take();
-				this.adsManager.stageUpdate(request);
-				initializingUpdates++;
-				if(initializingUpdates % 10000 == 0) {
-					logger.log(Level.INFO, "..."+initializingUpdates+" initialized");
+			// process any initializing updates, if any
+			logger.log(Level.INFO, "... processing "+this.updatesToCommit.size()+" initial log creation statements ");
+			while(!this.updatesToCommit.isEmpty()) {
+				Update update = this.updatesToCommit.take();
+				if(!update.isCreateLogStatement()) {
+					logger.log(Level.INFO, "... error - a log statement has been recieved before the log has been created");
+					throw new RuntimeException();
 				}
-				logger.log(Level.FINE, "initializing update #"+initializingUpdates);
+				this.logManager.commitNewLog(update.getSignedCreateLogStatement());
+				this.totalLogs++;
+				this.totalUpdates++;
+				if(this.totalLogs % 10000 == 0) {
+					logger.log(Level.INFO, "..."+this.totalLogs+" logs initialized");
+				}
 			}
 			logger.log(Level.INFO, "doing initial commit!");
-			this.adsManager.commitParallelized(this.workers);		
-			logger.log(Level.INFO, "initialized "+initializingUpdates
-					+" ADS_IDs [at "+LocalDateTime.now()+"]");
+			this.logManager.commitParallelized(this.workers);		
+			logger.log(Level.INFO, "initialized "+this.totalLogs
+					+" logs [at "+LocalDateTime.now()+"]");
 		}catch(Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
@@ -96,15 +102,20 @@ public class BVerifyServerUpdateApplier implements Runnable {
 			while(!this.shutdown) {
 				// we use poll here to make sure that the shutdown condition is checked 
 				// at least once a second
-				PerformUpdateRequest updateRequest = this.updates.poll(1, TimeUnit.SECONDS);
-				if(updateRequest == null) {
+				Update update = this.updatesToCommit.poll(1, TimeUnit.SECONDS);
+				if(update == null) {
 					continue;
 				}
-				this.adsManager.stageUpdate(updateRequest);
-				
-				uncommittedUpdates++;
-				totalUpdates++;
-				logger.log(Level.FINE, "staging update #"+totalUpdates);
+				if(update.isCreateLogStatement()) {
+					this.logManager.commitNewLog(update.getSignedCreateLogStatement());
+					this.totalLogs++;
+				}else {
+					this.logManager.commitNewLogStatement(update.getSignedLogStatement());
+					this.totalLogStatements++;
+				}					
+				this.totalUpdates++;
+				this.uncommittedUpdates++;
+				logger.log(Level.FINE, "uncommitted updates: "+this.uncommittedUpdates);
 				
 				if(this.uncommittedUpdates % 10000 == 0) {
 					logger.log(Level.INFO, "... batched currently: "+this.uncommittedUpdates);
@@ -117,32 +128,38 @@ public class BVerifyServerUpdateApplier implements Runnable {
 					this.lock.writeLock().lock();
 					// drain any approved updates (since have lock, no more will get added,
 					// but there may be some existing updates outstanding)
-					while(!this.updates.isEmpty()) {
-						PerformUpdateRequest request = this.updates.take();
-						this.adsManager.stageUpdate(request);
-						uncommittedUpdates++;
-						totalUpdates++;
+					while(!this.updatesToCommit.isEmpty()) {
+						Update lastUpdate = this.updatesToCommit.take();
+						if(lastUpdate.isCreateLogStatement()) {
+							this.logManager.commitNewLog(lastUpdate.getSignedCreateLogStatement());
+							this.totalLogs++;
+						}else {
+							this.logManager.commitNewLogStatement(lastUpdate.getSignedLogStatement());
+							this.totalLogStatements++;
+						}	
+						this.totalUpdates++;
+						this.uncommittedUpdates++;
 						logger.log(Level.FINE, "staging update #"+totalUpdates);
 					}
 					// once all outstanding updates are added
 					// commit!
-					int totalNumberOfNodes = this.adsManager.countTotalNumberOfNodes();
-					int totalNumberOfHashesNeededToCommit = this.adsManager.countHashesNeededToCommit();
+					int totalNumberOfNodes = this.logManager.countTotalNumberOfNodes();
+					int totalNumberOfHashesNeededToCommit = this.logManager.countHashesNeededToCommit();
 					logger.log(Level.INFO, "starting to commit");
 					logger.log(Level.INFO, "[total updates: "+uncommittedUpdates+
-							" | total nodes in ADS: "+totalNumberOfNodes+
+							" | total nodes in MPT: "+totalNumberOfNodes+
 							" | number of hashes needed to commit: "+totalNumberOfHashesNeededToCommit+
 							"]");
 					long startTime = System.currentTimeMillis();
-					this.adsManager.commitParallelized(this.workers);		
+					this.logManager.commitParallelized(this.workers);		
 					long endTime = System.currentTimeMillis();
 					this.lock.writeLock().unlock();
 					long duration = endTime - startTime;
 					NumberFormat formatter = new DecimalFormat("#0.000");
 					String timeTaken = formatter.format(duration / 1000d)+ " seconds";
 					logger.log(Level.INFO, "time taken to commit: "+timeTaken);
-					logger.log(Level.INFO, "total updates: "+totalUpdates
-							+" [at "+LocalDateTime.now()+"]");
+					logger.log(Level.INFO, "logs: "+this.totalLogs+" | statements: "+this.totalLogStatements
+						+"total updates: "+totalUpdates+" [at "+LocalDateTime.now()+"]");
 					this.uncommittedUpdates = 0;
 				}
 			}	

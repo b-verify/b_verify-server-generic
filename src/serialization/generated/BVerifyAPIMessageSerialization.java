@@ -14,58 +14,49 @@ public final class BVerifyAPIMessageSerialization {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface PerformUpdateRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.PerformUpdateRequest)
+  public interface SignedCreateLogStatementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:serialization.generated.SignedCreateLogStatement)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    boolean hasUpdate();
+    boolean hasCreateLogStatement();
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.Update getUpdate();
+    serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getCreateLogStatement();
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder getUpdateOrBuilder();
+    serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder getCreateLogStatementOrBuilder();
 
     /**
-     * <code>repeated bytes signatures = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
-    java.util.List<com.google.protobuf.ByteString> getSignaturesList();
-    /**
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    int getSignaturesCount();
-    /**
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    com.google.protobuf.ByteString getSignatures(int index);
+    com.google.protobuf.ByteString getSignature();
   }
   /**
    * <pre>
    **
-   *	Request that the server update the required ADSes
-   *	Sent by any party to the server. Must include 
-   * 	the ADS modifications desired along with the 
-   * 	required signatures.
+   *	Signed statement to create a new log.
+   *	Includes the log creation statement 
+   * 	and the required signatures.
    * </pre>
    *
-   * Protobuf type {@code serialization.generated.PerformUpdateRequest}
+   * Protobuf type {@code serialization.generated.SignedCreateLogStatement}
    */
-  public  static final class PerformUpdateRequest extends
+  public  static final class SignedCreateLogStatement extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.PerformUpdateRequest)
-      PerformUpdateRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:serialization.generated.SignedCreateLogStatement)
+      SignedCreateLogStatementOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PerformUpdateRequest.newBuilder() to construct.
-    private PerformUpdateRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SignedCreateLogStatement.newBuilder() to construct.
+    private SignedCreateLogStatement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PerformUpdateRequest() {
-      signatures_ = java.util.Collections.emptyList();
+    private SignedCreateLogStatement() {
+      signature_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -73,7 +64,7 @@ public final class BVerifyAPIMessageSerialization {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PerformUpdateRequest(
+    private SignedCreateLogStatement(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -100,24 +91,21 @@ public final class BVerifyAPIMessageSerialization {
               break;
             }
             case 10: {
-              serialization.generated.BVerifyAPIMessageSerialization.Update.Builder subBuilder = null;
-              if (update_ != null) {
-                subBuilder = update_.toBuilder();
+              serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder subBuilder = null;
+              if (createLogStatement_ != null) {
+                subBuilder = createLogStatement_.toBuilder();
               }
-              update_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.Update.parser(), extensionRegistry);
+              createLogStatement_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(update_);
-                update_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(createLogStatement_);
+                createLogStatement_ = subBuilder.buildPartial();
               }
 
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              signatures_.add(input.readBytes());
+
+              signature_ = input.readBytes();
               break;
             }
           }
@@ -128,67 +116,50 @@ public final class BVerifyAPIMessageSerialization {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateRequest_descriptor;
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedCreateLogStatement_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateRequest_fieldAccessorTable
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedCreateLogStatement_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.class, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder.class);
+              serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int UPDATE_FIELD_NUMBER = 1;
-    private serialization.generated.BVerifyAPIMessageSerialization.Update update_;
+    public static final int CREATE_LOG_STATEMENT_FIELD_NUMBER = 1;
+    private serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement createLogStatement_;
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    public boolean hasUpdate() {
-      return update_ != null;
+    public boolean hasCreateLogStatement() {
+      return createLogStatement_ != null;
     }
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.Update getUpdate() {
-      return update_ == null ? serialization.generated.BVerifyAPIMessageSerialization.Update.getDefaultInstance() : update_;
+    public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getCreateLogStatement() {
+      return createLogStatement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.getDefaultInstance() : createLogStatement_;
     }
     /**
-     * <code>.serialization.generated.Update update = 1;</code>
+     * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder getUpdateOrBuilder() {
-      return getUpdate();
+    public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder getCreateLogStatementOrBuilder() {
+      return getCreateLogStatement();
     }
 
-    public static final int SIGNATURES_FIELD_NUMBER = 2;
-    private java.util.List<com.google.protobuf.ByteString> signatures_;
+    public static final int SIGNATURE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString signature_;
     /**
-     * <code>repeated bytes signatures = 2;</code>
+     * <code>bytes signature = 2;</code>
      */
-    public java.util.List<com.google.protobuf.ByteString>
-        getSignaturesList() {
-      return signatures_;
-    }
-    /**
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    public int getSignaturesCount() {
-      return signatures_.size();
-    }
-    /**
-     * <code>repeated bytes signatures = 2;</code>
-     */
-    public com.google.protobuf.ByteString getSignatures(int index) {
-      return signatures_.get(index);
+    public com.google.protobuf.ByteString getSignature() {
+      return signature_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -203,11 +174,11 @@ public final class BVerifyAPIMessageSerialization {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (update_ != null) {
-        output.writeMessage(1, getUpdate());
+      if (createLogStatement_ != null) {
+        output.writeMessage(1, getCreateLogStatement());
       }
-      for (int i = 0; i < signatures_.size(); i++) {
-        output.writeBytes(2, signatures_.get(i));
+      if (!signature_.isEmpty()) {
+        output.writeBytes(2, signature_);
       }
       unknownFields.writeTo(output);
     }
@@ -217,18 +188,13 @@ public final class BVerifyAPIMessageSerialization {
       if (size != -1) return size;
 
       size = 0;
-      if (update_ != null) {
+      if (createLogStatement_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getUpdate());
+          .computeMessageSize(1, getCreateLogStatement());
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < signatures_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(signatures_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getSignaturesList().size();
+      if (!signature_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, signature_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -240,19 +206,19 @@ public final class BVerifyAPIMessageSerialization {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest)) {
+      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement)) {
         return super.equals(obj);
       }
-      serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest other = (serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest) obj;
+      serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement other = (serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement) obj;
 
       boolean result = true;
-      result = result && (hasUpdate() == other.hasUpdate());
-      if (hasUpdate()) {
-        result = result && getUpdate()
-            .equals(other.getUpdate());
+      result = result && (hasCreateLogStatement() == other.hasCreateLogStatement());
+      if (hasCreateLogStatement()) {
+        result = result && getCreateLogStatement()
+            .equals(other.getCreateLogStatement());
       }
-      result = result && getSignaturesList()
-          .equals(other.getSignaturesList());
+      result = result && getSignature()
+          .equals(other.getSignature());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -264,82 +230,80 @@ public final class BVerifyAPIMessageSerialization {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasUpdate()) {
-        hash = (37 * hash) + UPDATE_FIELD_NUMBER;
-        hash = (53 * hash) + getUpdate().hashCode();
+      if (hasCreateLogStatement()) {
+        hash = (37 * hash) + CREATE_LOG_STATEMENT_FIELD_NUMBER;
+        hash = (53 * hash) + getCreateLogStatement().hashCode();
       }
-      if (getSignaturesCount() > 0) {
-        hash = (37 * hash) + SIGNATURES_FIELD_NUMBER;
-        hash = (53 * hash) + getSignaturesList().hashCode();
-      }
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(byte[] data)
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseDelimitedFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseDelimitedFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -351,7 +315,7 @@ public final class BVerifyAPIMessageSerialization {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest prototype) {
+    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -368,31 +332,30 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	Request that the server update the required ADSes
-     *	Sent by any party to the server. Must include 
-     * 	the ADS modifications desired along with the 
-     * 	required signatures.
+     *	Signed statement to create a new log.
+     *	Includes the log creation statement 
+     * 	and the required signatures.
      * </pre>
      *
-     * Protobuf type {@code serialization.generated.PerformUpdateRequest}
+     * Protobuf type {@code serialization.generated.SignedCreateLogStatement}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.PerformUpdateRequest)
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder {
+        // @@protoc_insertion_point(builder_implements:serialization.generated.SignedCreateLogStatement)
+        serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateRequest_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedCreateLogStatement_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateRequest_fieldAccessorTable
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedCreateLogStatement_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.class, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder.class);
+                serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder.class);
       }
 
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.newBuilder()
+      // Construct using serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -409,49 +372,42 @@ public final class BVerifyAPIMessageSerialization {
       }
       public Builder clear() {
         super.clear();
-        if (updateBuilder_ == null) {
-          update_ = null;
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = null;
         } else {
-          update_ = null;
-          updateBuilder_ = null;
+          createLogStatement_ = null;
+          createLogStatementBuilder_ = null;
         }
-        signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        signature_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateRequest_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedCreateLogStatement_descriptor;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.getDefaultInstance();
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getDefaultInstanceForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.getDefaultInstance();
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest build() {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest result = buildPartial();
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement build() {
+        serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest result = new serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (updateBuilder_ == null) {
-          result.update_ = update_;
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement buildPartial() {
+        serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement result = new serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement(this);
+        if (createLogStatementBuilder_ == null) {
+          result.createLogStatement_ = createLogStatement_;
         } else {
-          result.update_ = updateBuilder_.build();
+          result.createLogStatement_ = createLogStatementBuilder_.build();
         }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_);
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.signatures_ = signatures_;
-        result.bitField0_ = to_bitField0_;
+        result.signature_ = signature_;
         onBuilt();
         return result;
       }
@@ -483,28 +439,21 @@ public final class BVerifyAPIMessageSerialization {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest)other);
+        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement) {
+          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.getDefaultInstance()) return this;
-        if (other.hasUpdate()) {
-          mergeUpdate(other.getUpdate());
+      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement other) {
+        if (other == serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.getDefaultInstance()) return this;
+        if (other.hasCreateLogStatement()) {
+          mergeCreateLogStatement(other.getCreateLogStatement());
         }
-        if (!other.signatures_.isEmpty()) {
-          if (signatures_.isEmpty()) {
-            signatures_ = other.signatures_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureSignaturesIsMutable();
-            signatures_.addAll(other.signatures_);
-          }
-          onChanged();
+        if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
+          setSignature(other.getSignature());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -519,11 +468,11 @@ public final class BVerifyAPIMessageSerialization {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest parsedMessage = null;
+        serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest) e.getUnfinishedMessage();
+          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -532,1127 +481,149 @@ public final class BVerifyAPIMessageSerialization {
         }
         return this;
       }
-      private int bitField0_;
 
-      private serialization.generated.BVerifyAPIMessageSerialization.Update update_ = null;
+      private serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement createLogStatement_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.Update, serialization.generated.BVerifyAPIMessageSerialization.Update.Builder, serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder> updateBuilder_;
+          serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder> createLogStatementBuilder_;
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public boolean hasUpdate() {
-        return updateBuilder_ != null || update_ != null;
+      public boolean hasCreateLogStatement() {
+        return createLogStatementBuilder_ != null || createLogStatement_ != null;
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.Update getUpdate() {
-        if (updateBuilder_ == null) {
-          return update_ == null ? serialization.generated.BVerifyAPIMessageSerialization.Update.getDefaultInstance() : update_;
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getCreateLogStatement() {
+        if (createLogStatementBuilder_ == null) {
+          return createLogStatement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.getDefaultInstance() : createLogStatement_;
         } else {
-          return updateBuilder_.getMessage();
+          return createLogStatementBuilder_.getMessage();
         }
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public Builder setUpdate(serialization.generated.BVerifyAPIMessageSerialization.Update value) {
-        if (updateBuilder_ == null) {
+      public Builder setCreateLogStatement(serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement value) {
+        if (createLogStatementBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          update_ = value;
+          createLogStatement_ = value;
           onChanged();
         } else {
-          updateBuilder_.setMessage(value);
+          createLogStatementBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public Builder setUpdate(
-          serialization.generated.BVerifyAPIMessageSerialization.Update.Builder builderForValue) {
-        if (updateBuilder_ == null) {
-          update_ = builderForValue.build();
+      public Builder setCreateLogStatement(
+          serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder builderForValue) {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = builderForValue.build();
           onChanged();
         } else {
-          updateBuilder_.setMessage(builderForValue.build());
+          createLogStatementBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public Builder mergeUpdate(serialization.generated.BVerifyAPIMessageSerialization.Update value) {
-        if (updateBuilder_ == null) {
-          if (update_ != null) {
-            update_ =
-              serialization.generated.BVerifyAPIMessageSerialization.Update.newBuilder(update_).mergeFrom(value).buildPartial();
+      public Builder mergeCreateLogStatement(serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement value) {
+        if (createLogStatementBuilder_ == null) {
+          if (createLogStatement_ != null) {
+            createLogStatement_ =
+              serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.newBuilder(createLogStatement_).mergeFrom(value).buildPartial();
           } else {
-            update_ = value;
+            createLogStatement_ = value;
           }
           onChanged();
         } else {
-          updateBuilder_.mergeFrom(value);
+          createLogStatementBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public Builder clearUpdate() {
-        if (updateBuilder_ == null) {
-          update_ = null;
+      public Builder clearCreateLogStatement() {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = null;
           onChanged();
         } else {
-          update_ = null;
-          updateBuilder_ = null;
+          createLogStatement_ = null;
+          createLogStatementBuilder_ = null;
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.Update.Builder getUpdateBuilder() {
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder getCreateLogStatementBuilder() {
         
         onChanged();
-        return getUpdateFieldBuilder().getBuilder();
+        return getCreateLogStatementFieldBuilder().getBuilder();
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder getUpdateOrBuilder() {
-        if (updateBuilder_ != null) {
-          return updateBuilder_.getMessageOrBuilder();
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder getCreateLogStatementOrBuilder() {
+        if (createLogStatementBuilder_ != null) {
+          return createLogStatementBuilder_.getMessageOrBuilder();
         } else {
-          return update_ == null ?
-              serialization.generated.BVerifyAPIMessageSerialization.Update.getDefaultInstance() : update_;
+          return createLogStatement_ == null ?
+              serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.getDefaultInstance() : createLogStatement_;
         }
       }
       /**
-       * <code>.serialization.generated.Update update = 1;</code>
+       * <code>.serialization.generated.CreateLogStatement create_log_statement = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.Update, serialization.generated.BVerifyAPIMessageSerialization.Update.Builder, serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder> 
-          getUpdateFieldBuilder() {
-        if (updateBuilder_ == null) {
-          updateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              serialization.generated.BVerifyAPIMessageSerialization.Update, serialization.generated.BVerifyAPIMessageSerialization.Update.Builder, serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder>(
-                  getUpdate(),
+          serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder> 
+          getCreateLogStatementFieldBuilder() {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatementBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder>(
+                  getCreateLogStatement(),
                   getParentForChildren(),
                   isClean());
-          update_ = null;
+          createLogStatement_ = null;
         }
-        return updateBuilder_;
+        return createLogStatementBuilder_;
       }
 
-      private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
-      private void ensureSignaturesIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
-          bitField0_ |= 0x00000002;
-         }
+      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes signature = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSignature() {
+        return signature_;
       }
       /**
-       * <code>repeated bytes signatures = 2;</code>
+       * <code>bytes signature = 2;</code>
        */
-      public java.util.List<com.google.protobuf.ByteString>
-          getSignaturesList() {
-        return java.util.Collections.unmodifiableList(signatures_);
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public int getSignaturesCount() {
-        return signatures_.size();
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public com.google.protobuf.ByteString getSignatures(int index) {
-        return signatures_.get(index);
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public Builder setSignatures(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
-        signatures_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public Builder addSignatures(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
-        signatures_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public Builder addAllSignatures(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureSignaturesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, signatures_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated bytes signatures = 2;</code>
-       */
-      public Builder clearSignatures() {
-        signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.PerformUpdateRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.PerformUpdateRequest)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<PerformUpdateRequest>
-        PARSER = new com.google.protobuf.AbstractParser<PerformUpdateRequest>() {
-      public PerformUpdateRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PerformUpdateRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PerformUpdateRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PerformUpdateRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface PerformUpdateResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.PerformUpdateResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bool accepted = 1;</code>
-     */
-    boolean getAccepted();
-  }
-  /**
-   * <pre>
-   **
-   *	Response to an update request. If accepted the server
-   *	promises to commit the update.
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.PerformUpdateResponse}
-   */
-  public  static final class PerformUpdateResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.PerformUpdateResponse)
-      PerformUpdateResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use PerformUpdateResponse.newBuilder() to construct.
-    private PerformUpdateResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private PerformUpdateResponse() {
-      accepted_ = false;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PerformUpdateResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              accepted_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateResponse_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.class, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.Builder.class);
-    }
-
-    public static final int ACCEPTED_FIELD_NUMBER = 1;
-    private boolean accepted_;
-    /**
-     * <code>bool accepted = 1;</code>
-     */
-    public boolean getAccepted() {
-      return accepted_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (accepted_ != false) {
-        output.writeBool(1, accepted_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (accepted_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, accepted_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse other = (serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse) obj;
-
-      boolean result = true;
-      result = result && (getAccepted()
-          == other.getAccepted());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ACCEPTED_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getAccepted());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *	Response to an update request. If accepted the server
-     *	promises to commit the update.
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.PerformUpdateResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.PerformUpdateResponse)
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.class, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        accepted_ = false;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_PerformUpdateResponse_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse build() {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse result = new serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse(this);
-        result.accepted_ = accepted_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse.getDefaultInstance()) return this;
-        if (other.getAccepted() != false) {
-          setAccepted(other.getAccepted());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private boolean accepted_ ;
-      /**
-       * <code>bool accepted = 1;</code>
-       */
-      public boolean getAccepted() {
-        return accepted_;
-      }
-      /**
-       * <code>bool accepted = 1;</code>
-       */
-      public Builder setAccepted(boolean value) {
-        
-        accepted_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool accepted = 1;</code>
-       */
-      public Builder clearAccepted() {
-        
-        accepted_ = false;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.PerformUpdateResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.PerformUpdateResponse)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<PerformUpdateResponse>
-        PARSER = new com.google.protobuf.AbstractParser<PerformUpdateResponse>() {
-      public PerformUpdateResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PerformUpdateResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PerformUpdateResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PerformUpdateResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ProveADSRootRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.ProveADSRootRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    com.google.protobuf.ByteString getAdsId();
-  }
-  /**
-   * <pre>
-   **
-   *	Request that the server return the ADS Root
-   * 	for the specified ADS ID along with a complete
-   *	proof. Anyone can ask the server for a proof 
-   *	for a given ADS
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.ProveADSRootRequest}
-   */
-  public  static final class ProveADSRootRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.ProveADSRootRequest)
-      ProveADSRootRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ProveADSRootRequest.newBuilder() to construct.
-    private ProveADSRootRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ProveADSRootRequest() {
-      adsId_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ProveADSRootRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-
-              adsId_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.class, serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.Builder.class);
-    }
-
-    public static final int ADS_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString adsId_;
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    public com.google.protobuf.ByteString getAdsId() {
-      return adsId_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!adsId_.isEmpty()) {
-        output.writeBytes(1, adsId_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!adsId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, adsId_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest other = (serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest) obj;
-
-      boolean result = true;
-      result = result && getAdsId()
-          .equals(other.getAdsId());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ADS_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getAdsId().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *	Request that the server return the ADS Root
-     * 	for the specified ADS ID along with a complete
-     *	proof. Anyone can ask the server for a proof 
-     *	for a given ADS
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.ProveADSRootRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.ProveADSRootRequest)
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.class, serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        adsId_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootRequest_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest build() {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest result = new serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest(this);
-        result.adsId_ = adsId_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest.getDefaultInstance()) return this;
-        if (other.getAdsId() != com.google.protobuf.ByteString.EMPTY) {
-          setAdsId(other.getAdsId());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString adsId_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public com.google.protobuf.ByteString getAdsId() {
-        return adsId_;
-      }
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public Builder setAdsId(com.google.protobuf.ByteString value) {
+      public Builder setSignature(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        adsId_ = value;
+        signature_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes ads_id = 1;</code>
+       * <code>bytes signature = 2;</code>
        */
-      public Builder clearAdsId() {
+      public Builder clearSignature() {
         
-        adsId_ = getDefaultInstance().getAdsId();
+        signature_ = getDefaultInstance().getSignature();
         onChanged();
         return this;
       }
@@ -1667,81 +638,83 @@ public final class BVerifyAPIMessageSerialization {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:serialization.generated.ProveADSRootRequest)
+      // @@protoc_insertion_point(builder_scope:serialization.generated.SignedCreateLogStatement)
     }
 
-    // @@protoc_insertion_point(class_scope:serialization.generated.ProveADSRootRequest)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:serialization.generated.SignedCreateLogStatement)
+    private static final serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest();
+      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement();
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest getDefaultInstance() {
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ProveADSRootRequest>
-        PARSER = new com.google.protobuf.AbstractParser<ProveADSRootRequest>() {
-      public ProveADSRootRequest parsePartialFrom(
+    private static final com.google.protobuf.Parser<SignedCreateLogStatement>
+        PARSER = new com.google.protobuf.AbstractParser<SignedCreateLogStatement>() {
+      public SignedCreateLogStatement parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ProveADSRootRequest(input, extensionRegistry);
+        return new SignedCreateLogStatement(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ProveADSRootRequest> parser() {
+    public static com.google.protobuf.Parser<SignedCreateLogStatement> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ProveADSRootRequest> getParserForType() {
+    public com.google.protobuf.Parser<SignedCreateLogStatement> getParserForType() {
       return PARSER;
     }
 
-    public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootRequest getDefaultInstanceForType() {
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ProveADSRootResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.ProveADSRootResponse)
+  public interface CreateLogStatementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:serialization.generated.CreateLogStatement)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+     * <code>bytes controlling_public_key = 1;</code>
      */
-    boolean hasProof();
+    com.google.protobuf.ByteString getControllingPublicKey();
+
     /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+     * <code>bytes initial_statement = 2;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getProof();
-    /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-     */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder getProofOrBuilder();
+    com.google.protobuf.ByteString getInitialStatement();
   }
   /**
    * <pre>
    **
-   *	Response from a request for the an ADS Root
-   *	proof. Contains the entire proof for that
-   *	ADS Root
+   *	Statement to create a new log.
+   *	Requires the public keys which must sign any 
+   *	log statements and an initial statement (e.g. a name)
+   *	for the log.
+   *	ID for the new log is
+   *			 logID = H(CreateLogStatement)
    * </pre>
    *
-   * Protobuf type {@code serialization.generated.ProveADSRootResponse}
+   * Protobuf type {@code serialization.generated.CreateLogStatement}
    */
-  public  static final class ProveADSRootResponse extends
+  public  static final class CreateLogStatement extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.ProveADSRootResponse)
-      ProveADSRootResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:serialization.generated.CreateLogStatement)
+      CreateLogStatementOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ProveADSRootResponse.newBuilder() to construct.
-    private ProveADSRootResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use CreateLogStatement.newBuilder() to construct.
+    private CreateLogStatement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ProveADSRootResponse() {
+    private CreateLogStatement() {
+      controllingPublicKey_ = com.google.protobuf.ByteString.EMPTY;
+      initialStatement_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -1749,7 +722,7 @@ public final class BVerifyAPIMessageSerialization {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ProveADSRootResponse(
+    private CreateLogStatement(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1776,16 +749,13 @@ public final class BVerifyAPIMessageSerialization {
               break;
             }
             case 10: {
-              serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder subBuilder = null;
-              if (proof_ != null) {
-                subBuilder = proof_.toBuilder();
-              }
-              proof_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(proof_);
-                proof_ = subBuilder.buildPartial();
-              }
 
+              controllingPublicKey_ = input.readBytes();
+              break;
+            }
+            case 18: {
+
+              initialStatement_ = input.readBytes();
               break;
             }
           }
@@ -1802,35 +772,32 @@ public final class BVerifyAPIMessageSerialization {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootResponse_descriptor;
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_CreateLogStatement_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootResponse_fieldAccessorTable
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_CreateLogStatement_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.class, serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.Builder.class);
+              serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder.class);
     }
 
-    public static final int PROOF_FIELD_NUMBER = 1;
-    private serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof proof_;
+    public static final int CONTROLLING_PUBLIC_KEY_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString controllingPublicKey_;
     /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+     * <code>bytes controlling_public_key = 1;</code>
      */
-    public boolean hasProof() {
-      return proof_ != null;
+    public com.google.protobuf.ByteString getControllingPublicKey() {
+      return controllingPublicKey_;
     }
+
+    public static final int INITIAL_STATEMENT_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString initialStatement_;
     /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+     * <code>bytes initial_statement = 2;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getProof() {
-      return proof_ == null ? serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.getDefaultInstance() : proof_;
-    }
-    /**
-     * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-     */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder getProofOrBuilder() {
-      return getProof();
+    public com.google.protobuf.ByteString getInitialStatement() {
+      return initialStatement_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1845,8 +812,11 @@ public final class BVerifyAPIMessageSerialization {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (proof_ != null) {
-        output.writeMessage(1, getProof());
+      if (!controllingPublicKey_.isEmpty()) {
+        output.writeBytes(1, controllingPublicKey_);
+      }
+      if (!initialStatement_.isEmpty()) {
+        output.writeBytes(2, initialStatement_);
       }
       unknownFields.writeTo(output);
     }
@@ -1856,9 +826,13 @@ public final class BVerifyAPIMessageSerialization {
       if (size != -1) return size;
 
       size = 0;
-      if (proof_ != null) {
+      if (!controllingPublicKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getProof());
+          .computeBytesSize(1, controllingPublicKey_);
+      }
+      if (!initialStatement_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, initialStatement_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1870,17 +844,16 @@ public final class BVerifyAPIMessageSerialization {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse)) {
+      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement)) {
         return super.equals(obj);
       }
-      serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse other = (serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse) obj;
+      serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement other = (serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement) obj;
 
       boolean result = true;
-      result = result && (hasProof() == other.hasProof());
-      if (hasProof()) {
-        result = result && getProof()
-            .equals(other.getProof());
-      }
+      result = result && getControllingPublicKey()
+          .equals(other.getControllingPublicKey());
+      result = result && getInitialStatement()
+          .equals(other.getInitialStatement());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1892,78 +865,78 @@ public final class BVerifyAPIMessageSerialization {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasProof()) {
-        hash = (37 * hash) + PROOF_FIELD_NUMBER;
-        hash = (53 * hash) + getProof().hashCode();
-      }
+      hash = (37 * hash) + CONTROLLING_PUBLIC_KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getControllingPublicKey().hashCode();
+      hash = (37 * hash) + INITIAL_STATEMENT_FIELD_NUMBER;
+      hash = (53 * hash) + getInitialStatement().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(byte[] data)
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseDelimitedFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseDelimitedFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1975,7 +948,7 @@ public final class BVerifyAPIMessageSerialization {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse prototype) {
+    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -1992,30 +965,33 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	Response from a request for the an ADS Root
-     *	proof. Contains the entire proof for that
-     *	ADS Root
+     *	Statement to create a new log.
+     *	Requires the public keys which must sign any 
+     *	log statements and an initial statement (e.g. a name)
+     *	for the log.
+     *	ID for the new log is
+     *			 logID = H(CreateLogStatement)
      * </pre>
      *
-     * Protobuf type {@code serialization.generated.ProveADSRootResponse}
+     * Protobuf type {@code serialization.generated.CreateLogStatement}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.ProveADSRootResponse)
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:serialization.generated.CreateLogStatement)
+        serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatementOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootResponse_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_CreateLogStatement_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootResponse_fieldAccessorTable
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_CreateLogStatement_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.class, serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.Builder.class);
+                serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.Builder.class);
       }
 
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.newBuilder()
+      // Construct using serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2032,39 +1008,34 @@ public final class BVerifyAPIMessageSerialization {
       }
       public Builder clear() {
         super.clear();
-        if (proofBuilder_ == null) {
-          proof_ = null;
-        } else {
-          proof_ = null;
-          proofBuilder_ = null;
-        }
+        controllingPublicKey_ = com.google.protobuf.ByteString.EMPTY;
+
+        initialStatement_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ProveADSRootResponse_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_CreateLogStatement_descriptor;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.getDefaultInstance();
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getDefaultInstanceForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.getDefaultInstance();
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse build() {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse result = buildPartial();
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement build() {
+        serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse result = new serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse(this);
-        if (proofBuilder_ == null) {
-          result.proof_ = proof_;
-        } else {
-          result.proof_ = proofBuilder_.build();
-        }
+      public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement buildPartial() {
+        serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement result = new serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement(this);
+        result.controllingPublicKey_ = controllingPublicKey_;
+        result.initialStatement_ = initialStatement_;
         onBuilt();
         return result;
       }
@@ -2096,18 +1067,21 @@ public final class BVerifyAPIMessageSerialization {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse)other);
+        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement) {
+          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse.getDefaultInstance()) return this;
-        if (other.hasProof()) {
-          mergeProof(other.getProof());
+      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement other) {
+        if (other == serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement.getDefaultInstance()) return this;
+        if (other.getControllingPublicKey() != com.google.protobuf.ByteString.EMPTY) {
+          setControllingPublicKey(other.getControllingPublicKey());
+        }
+        if (other.getInitialStatement() != com.google.protobuf.ByteString.EMPTY) {
+          setInitialStatement(other.getInitialStatement());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2122,11 +1096,11 @@ public final class BVerifyAPIMessageSerialization {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse parsedMessage = null;
+        serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse) e.getUnfinishedMessage();
+          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2136,656 +1110,60 @@ public final class BVerifyAPIMessageSerialization {
         return this;
       }
 
-      private serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof proof_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder> proofBuilder_;
+      private com.google.protobuf.ByteString controllingPublicKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+       * <code>bytes controlling_public_key = 1;</code>
        */
-      public boolean hasProof() {
-        return proofBuilder_ != null || proof_ != null;
+      public com.google.protobuf.ByteString getControllingPublicKey() {
+        return controllingPublicKey_;
       }
       /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
+       * <code>bytes controlling_public_key = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getProof() {
-        if (proofBuilder_ == null) {
-          return proof_ == null ? serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.getDefaultInstance() : proof_;
-        } else {
-          return proofBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public Builder setProof(serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof value) {
-        if (proofBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          proof_ = value;
-          onChanged();
-        } else {
-          proofBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public Builder setProof(
-          serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder builderForValue) {
-        if (proofBuilder_ == null) {
-          proof_ = builderForValue.build();
-          onChanged();
-        } else {
-          proofBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public Builder mergeProof(serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof value) {
-        if (proofBuilder_ == null) {
-          if (proof_ != null) {
-            proof_ =
-              serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.newBuilder(proof_).mergeFrom(value).buildPartial();
-          } else {
-            proof_ = value;
-          }
-          onChanged();
-        } else {
-          proofBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public Builder clearProof() {
-        if (proofBuilder_ == null) {
-          proof_ = null;
-          onChanged();
-        } else {
-          proof_ = null;
-          proofBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder getProofBuilder() {
-        
-        onChanged();
-        return getProofFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder getProofOrBuilder() {
-        if (proofBuilder_ != null) {
-          return proofBuilder_.getMessageOrBuilder();
-        } else {
-          return proof_ == null ?
-              serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.getDefaultInstance() : proof_;
-        }
-      }
-      /**
-       * <code>.serialization.generated.ADSRootProof proof = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder> 
-          getProofFieldBuilder() {
-        if (proofBuilder_ == null) {
-          proofBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder>(
-                  getProof(),
-                  getParentForChildren(),
-                  isClean());
-          proof_ = null;
-        }
-        return proofBuilder_;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.ProveADSRootResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.ProveADSRootResponse)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ProveADSRootResponse>
-        PARSER = new com.google.protobuf.AbstractParser<ProveADSRootResponse>() {
-      public ProveADSRootResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ProveADSRootResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ProveADSRootResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ProveADSRootResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.ProveADSRootResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface GetADSProofUpdatesRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.GetADSProofUpdatesRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    com.google.protobuf.ByteString getAdsId();
-
-    /**
-     * <code>int32 from_commitment = 2;</code>
-     */
-    int getFromCommitment();
-  }
-  /**
-   * <pre>
-   **
-   *	Request for only the Updates for a proof 
-   * 	for the specified ADS Root. This is called
-   * 	by clients with cached proofs to avoid 
-   * 	requiring the server to retransmit the entire proof.
-   *	Instead the server only sends the updates for 
-   * 	the proof starting at the from_commitment.
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.GetADSProofUpdatesRequest}
-   */
-  public  static final class GetADSProofUpdatesRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.GetADSProofUpdatesRequest)
-      GetADSProofUpdatesRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use GetADSProofUpdatesRequest.newBuilder() to construct.
-    private GetADSProofUpdatesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private GetADSProofUpdatesRequest() {
-      adsId_ = com.google.protobuf.ByteString.EMPTY;
-      fromCommitment_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GetADSProofUpdatesRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-
-              adsId_ = input.readBytes();
-              break;
-            }
-            case 16: {
-
-              fromCommitment_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.class, serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.Builder.class);
-    }
-
-    public static final int ADS_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString adsId_;
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    public com.google.protobuf.ByteString getAdsId() {
-      return adsId_;
-    }
-
-    public static final int FROM_COMMITMENT_FIELD_NUMBER = 2;
-    private int fromCommitment_;
-    /**
-     * <code>int32 from_commitment = 2;</code>
-     */
-    public int getFromCommitment() {
-      return fromCommitment_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!adsId_.isEmpty()) {
-        output.writeBytes(1, adsId_);
-      }
-      if (fromCommitment_ != 0) {
-        output.writeInt32(2, fromCommitment_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!adsId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, adsId_);
-      }
-      if (fromCommitment_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, fromCommitment_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest other = (serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest) obj;
-
-      boolean result = true;
-      result = result && getAdsId()
-          .equals(other.getAdsId());
-      result = result && (getFromCommitment()
-          == other.getFromCommitment());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ADS_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getAdsId().hashCode();
-      hash = (37 * hash) + FROM_COMMITMENT_FIELD_NUMBER;
-      hash = (53 * hash) + getFromCommitment();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *	Request for only the Updates for a proof 
-     * 	for the specified ADS Root. This is called
-     * 	by clients with cached proofs to avoid 
-     * 	requiring the server to retransmit the entire proof.
-     *	Instead the server only sends the updates for 
-     * 	the proof starting at the from_commitment.
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.GetADSProofUpdatesRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.GetADSProofUpdatesRequest)
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.class, serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        adsId_ = com.google.protobuf.ByteString.EMPTY;
-
-        fromCommitment_ = 0;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest build() {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest result = new serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest(this);
-        result.adsId_ = adsId_;
-        result.fromCommitment_ = fromCommitment_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest.getDefaultInstance()) return this;
-        if (other.getAdsId() != com.google.protobuf.ByteString.EMPTY) {
-          setAdsId(other.getAdsId());
-        }
-        if (other.getFromCommitment() != 0) {
-          setFromCommitment(other.getFromCommitment());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString adsId_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public com.google.protobuf.ByteString getAdsId() {
-        return adsId_;
-      }
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public Builder setAdsId(com.google.protobuf.ByteString value) {
+      public Builder setControllingPublicKey(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        adsId_ = value;
+        controllingPublicKey_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes ads_id = 1;</code>
+       * <code>bytes controlling_public_key = 1;</code>
        */
-      public Builder clearAdsId() {
+      public Builder clearControllingPublicKey() {
         
-        adsId_ = getDefaultInstance().getAdsId();
+        controllingPublicKey_ = getDefaultInstance().getControllingPublicKey();
         onChanged();
         return this;
       }
 
-      private int fromCommitment_ ;
+      private com.google.protobuf.ByteString initialStatement_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>int32 from_commitment = 2;</code>
+       * <code>bytes initial_statement = 2;</code>
        */
-      public int getFromCommitment() {
-        return fromCommitment_;
+      public com.google.protobuf.ByteString getInitialStatement() {
+        return initialStatement_;
       }
       /**
-       * <code>int32 from_commitment = 2;</code>
+       * <code>bytes initial_statement = 2;</code>
        */
-      public Builder setFromCommitment(int value) {
-        
-        fromCommitment_ = value;
+      public Builder setInitialStatement(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        initialStatement_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 from_commitment = 2;</code>
+       * <code>bytes initial_statement = 2;</code>
        */
-      public Builder clearFromCommitment() {
+      public Builder clearInitialStatement() {
         
-        fromCommitment_ = 0;
+        initialStatement_ = getDefaultInstance().getInitialStatement();
         onChanged();
         return this;
       }
@@ -2800,82 +1178,78 @@ public final class BVerifyAPIMessageSerialization {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:serialization.generated.GetADSProofUpdatesRequest)
+      // @@protoc_insertion_point(builder_scope:serialization.generated.CreateLogStatement)
     }
 
-    // @@protoc_insertion_point(class_scope:serialization.generated.GetADSProofUpdatesRequest)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:serialization.generated.CreateLogStatement)
+    private static final serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest();
+      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement();
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest getDefaultInstance() {
+    public static serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetADSProofUpdatesRequest>
-        PARSER = new com.google.protobuf.AbstractParser<GetADSProofUpdatesRequest>() {
-      public GetADSProofUpdatesRequest parsePartialFrom(
+    private static final com.google.protobuf.Parser<CreateLogStatement>
+        PARSER = new com.google.protobuf.AbstractParser<CreateLogStatement>() {
+      public CreateLogStatement parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetADSProofUpdatesRequest(input, extensionRegistry);
+        return new CreateLogStatement(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetADSProofUpdatesRequest> parser() {
+    public static com.google.protobuf.Parser<CreateLogStatement> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetADSProofUpdatesRequest> getParserForType() {
+    public com.google.protobuf.Parser<CreateLogStatement> getParserForType() {
       return PARSER;
     }
 
-    public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesRequest getDefaultInstanceForType() {
+    public serialization.generated.BVerifyAPIMessageSerialization.CreateLogStatement getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface GetADSProofUpdatesResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.GetADSProofUpdatesResponse)
+  public interface LogStatementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:serialization.generated.LogStatement)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+     * <code>bytes log_id = 1;</code>
      */
-    boolean hasUpdates();
+    com.google.protobuf.ByteString getLogId();
+
     /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+     * <code>bytes statment = 2;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getUpdates();
-    /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-     */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder getUpdatesOrBuilder();
+    com.google.protobuf.ByteString getStatment();
   }
   /**
    * <pre>
    **
-   *	Response for a request for proof updates.
-   *	Contains the updates required for a client 
-   * 	to produce a fresh, valid proof for an 
-   * 	ADS Root.
+   *	Log Statement.
    * </pre>
    *
-   * Protobuf type {@code serialization.generated.GetADSProofUpdatesResponse}
+   * Protobuf type {@code serialization.generated.LogStatement}
    */
-  public  static final class GetADSProofUpdatesResponse extends
+  public  static final class LogStatement extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.GetADSProofUpdatesResponse)
-      GetADSProofUpdatesResponseOrBuilder {
+      // @@protoc_insertion_point(message_implements:serialization.generated.LogStatement)
+      LogStatementOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use GetADSProofUpdatesResponse.newBuilder() to construct.
-    private GetADSProofUpdatesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use LogStatement.newBuilder() to construct.
+    private LogStatement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private GetADSProofUpdatesResponse() {
+    private LogStatement() {
+      logId_ = com.google.protobuf.ByteString.EMPTY;
+      statment_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -2883,7 +1257,7 @@ public final class BVerifyAPIMessageSerialization {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private GetADSProofUpdatesResponse(
+    private LogStatement(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2910,16 +1284,13 @@ public final class BVerifyAPIMessageSerialization {
               break;
             }
             case 10: {
-              serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder subBuilder = null;
-              if (updates_ != null) {
-                subBuilder = updates_.toBuilder();
-              }
-              updates_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(updates_);
-                updates_ = subBuilder.buildPartial();
-              }
 
+              logId_ = input.readBytes();
+              break;
+            }
+            case 18: {
+
+              statment_ = input.readBytes();
               break;
             }
           }
@@ -2936,35 +1307,32 @@ public final class BVerifyAPIMessageSerialization {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor;
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogStatement_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesResponse_fieldAccessorTable
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogStatement_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.class, serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.Builder.class);
+              serialization.generated.BVerifyAPIMessageSerialization.LogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder.class);
     }
 
-    public static final int UPDATES_FIELD_NUMBER = 1;
-    private serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates updates_;
+    public static final int LOG_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString logId_;
     /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+     * <code>bytes log_id = 1;</code>
      */
-    public boolean hasUpdates() {
-      return updates_ != null;
+    public com.google.protobuf.ByteString getLogId() {
+      return logId_;
     }
+
+    public static final int STATMENT_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString statment_;
     /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+     * <code>bytes statment = 2;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getUpdates() {
-      return updates_ == null ? serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.getDefaultInstance() : updates_;
-    }
-    /**
-     * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-     */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder getUpdatesOrBuilder() {
-      return getUpdates();
+    public com.google.protobuf.ByteString getStatment() {
+      return statment_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2979,8 +1347,11 @@ public final class BVerifyAPIMessageSerialization {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (updates_ != null) {
-        output.writeMessage(1, getUpdates());
+      if (!logId_.isEmpty()) {
+        output.writeBytes(1, logId_);
+      }
+      if (!statment_.isEmpty()) {
+        output.writeBytes(2, statment_);
       }
       unknownFields.writeTo(output);
     }
@@ -2990,9 +1361,13 @@ public final class BVerifyAPIMessageSerialization {
       if (size != -1) return size;
 
       size = 0;
-      if (updates_ != null) {
+      if (!logId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getUpdates());
+          .computeBytesSize(1, logId_);
+      }
+      if (!statment_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, statment_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3004,17 +1379,16 @@ public final class BVerifyAPIMessageSerialization {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse)) {
+      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.LogStatement)) {
         return super.equals(obj);
       }
-      serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse other = (serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse) obj;
+      serialization.generated.BVerifyAPIMessageSerialization.LogStatement other = (serialization.generated.BVerifyAPIMessageSerialization.LogStatement) obj;
 
       boolean result = true;
-      result = result && (hasUpdates() == other.hasUpdates());
-      if (hasUpdates()) {
-        result = result && getUpdates()
-            .equals(other.getUpdates());
-      }
+      result = result && getLogId()
+          .equals(other.getLogId());
+      result = result && getStatment()
+          .equals(other.getStatment());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -3026,78 +1400,78 @@ public final class BVerifyAPIMessageSerialization {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasUpdates()) {
-        hash = (37 * hash) + UPDATES_FIELD_NUMBER;
-        hash = (53 * hash) + getUpdates().hashCode();
-      }
+      hash = (37 * hash) + LOG_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getLogId().hashCode();
+      hash = (37 * hash) + STATMENT_FIELD_NUMBER;
+      hash = (53 * hash) + getStatment().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(byte[] data)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseDelimitedFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseDelimitedFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3109,7 +1483,7 @@ public final class BVerifyAPIMessageSerialization {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse prototype) {
+    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.LogStatement prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -3126,31 +1500,28 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	Response for a request for proof updates.
-     *	Contains the updates required for a client 
-     * 	to produce a fresh, valid proof for an 
-     * 	ADS Root.
+     *	Log Statement.
      * </pre>
      *
-     * Protobuf type {@code serialization.generated.GetADSProofUpdatesResponse}
+     * Protobuf type {@code serialization.generated.LogStatement}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.GetADSProofUpdatesResponse)
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:serialization.generated.LogStatement)
+        serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogStatement_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesResponse_fieldAccessorTable
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogStatement_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.class, serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.Builder.class);
+                serialization.generated.BVerifyAPIMessageSerialization.LogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder.class);
       }
 
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.newBuilder()
+      // Construct using serialization.generated.BVerifyAPIMessageSerialization.LogStatement.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3167,39 +1538,34 @@ public final class BVerifyAPIMessageSerialization {
       }
       public Builder clear() {
         super.clear();
-        if (updatesBuilder_ == null) {
-          updates_ = null;
-        } else {
-          updates_ = null;
-          updatesBuilder_ = null;
-        }
+        logId_ = com.google.protobuf.ByteString.EMPTY;
+
+        statment_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogStatement_descriptor;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.getDefaultInstance();
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatement getDefaultInstanceForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.LogStatement.getDefaultInstance();
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse build() {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse result = buildPartial();
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatement build() {
+        serialization.generated.BVerifyAPIMessageSerialization.LogStatement result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse result = new serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse(this);
-        if (updatesBuilder_ == null) {
-          result.updates_ = updates_;
-        } else {
-          result.updates_ = updatesBuilder_.build();
-        }
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatement buildPartial() {
+        serialization.generated.BVerifyAPIMessageSerialization.LogStatement result = new serialization.generated.BVerifyAPIMessageSerialization.LogStatement(this);
+        result.logId_ = logId_;
+        result.statment_ = statment_;
         onBuilt();
         return result;
       }
@@ -3231,18 +1597,21 @@ public final class BVerifyAPIMessageSerialization {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse)other);
+        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.LogStatement) {
+          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.LogStatement)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse.getDefaultInstance()) return this;
-        if (other.hasUpdates()) {
-          mergeUpdates(other.getUpdates());
+      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.LogStatement other) {
+        if (other == serialization.generated.BVerifyAPIMessageSerialization.LogStatement.getDefaultInstance()) return this;
+        if (other.getLogId() != com.google.protobuf.ByteString.EMPTY) {
+          setLogId(other.getLogId());
+        }
+        if (other.getStatment() != com.google.protobuf.ByteString.EMPTY) {
+          setStatment(other.getStatment());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3257,11 +1626,11 @@ public final class BVerifyAPIMessageSerialization {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse parsedMessage = null;
+        serialization.generated.BVerifyAPIMessageSerialization.LogStatement parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse) e.getUnfinishedMessage();
+          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.LogStatement) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3271,121 +1640,62 @@ public final class BVerifyAPIMessageSerialization {
         return this;
       }
 
-      private serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates updates_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder> updatesBuilder_;
+      private com.google.protobuf.ByteString logId_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+       * <code>bytes log_id = 1;</code>
        */
-      public boolean hasUpdates() {
-        return updatesBuilder_ != null || updates_ != null;
+      public com.google.protobuf.ByteString getLogId() {
+        return logId_;
       }
       /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+       * <code>bytes log_id = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getUpdates() {
-        if (updatesBuilder_ == null) {
-          return updates_ == null ? serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.getDefaultInstance() : updates_;
-        } else {
-          return updatesBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-       */
-      public Builder setUpdates(serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates value) {
-        if (updatesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          updates_ = value;
-          onChanged();
-        } else {
-          updatesBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-       */
-      public Builder setUpdates(
-          serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder builderForValue) {
-        if (updatesBuilder_ == null) {
-          updates_ = builderForValue.build();
-          onChanged();
-        } else {
-          updatesBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-       */
-      public Builder mergeUpdates(serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates value) {
-        if (updatesBuilder_ == null) {
-          if (updates_ != null) {
-            updates_ =
-              serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.newBuilder(updates_).mergeFrom(value).buildPartial();
-          } else {
-            updates_ = value;
-          }
-          onChanged();
-        } else {
-          updatesBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-       */
-      public Builder clearUpdates() {
-        if (updatesBuilder_ == null) {
-          updates_ = null;
-          onChanged();
-        } else {
-          updates_ = null;
-          updatesBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder getUpdatesBuilder() {
-        
+      public Builder setLogId(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        logId_ = value;
         onChanged();
-        return getUpdatesFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+       * <code>bytes log_id = 1;</code>
        */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder getUpdatesOrBuilder() {
-        if (updatesBuilder_ != null) {
-          return updatesBuilder_.getMessageOrBuilder();
-        } else {
-          return updates_ == null ?
-              serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.getDefaultInstance() : updates_;
-        }
+      public Builder clearLogId() {
+        
+        logId_ = getDefaultInstance().getLogId();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString statment_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes statment = 2;</code>
+       */
+      public com.google.protobuf.ByteString getStatment() {
+        return statment_;
       }
       /**
-       * <code>.serialization.generated.ADSProofUpdates updates = 1;</code>
+       * <code>bytes statment = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder> 
-          getUpdatesFieldBuilder() {
-        if (updatesBuilder_ == null) {
-          updatesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder>(
-                  getUpdates(),
-                  getParentForChildren(),
-                  isClean());
-          updates_ = null;
-        }
-        return updatesBuilder_;
+      public Builder setStatment(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        statment_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes statment = 2;</code>
+       */
+      public Builder clearStatment() {
+        
+        statment_ = getDefaultInstance().getStatment();
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3398,950 +1708,793 @@ public final class BVerifyAPIMessageSerialization {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:serialization.generated.GetADSProofUpdatesResponse)
+      // @@protoc_insertion_point(builder_scope:serialization.generated.LogStatement)
     }
 
-    // @@protoc_insertion_point(class_scope:serialization.generated.GetADSProofUpdatesResponse)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:serialization.generated.LogStatement)
+    private static final serialization.generated.BVerifyAPIMessageSerialization.LogStatement DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse();
+      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.LogStatement();
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse getDefaultInstance() {
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogStatement getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<GetADSProofUpdatesResponse>
-        PARSER = new com.google.protobuf.AbstractParser<GetADSProofUpdatesResponse>() {
-      public GetADSProofUpdatesResponse parsePartialFrom(
+    private static final com.google.protobuf.Parser<LogStatement>
+        PARSER = new com.google.protobuf.AbstractParser<LogStatement>() {
+      public LogStatement parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GetADSProofUpdatesResponse(input, extensionRegistry);
+        return new LogStatement(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<GetADSProofUpdatesResponse> parser() {
+    public static com.google.protobuf.Parser<LogStatement> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<GetADSProofUpdatesResponse> getParserForType() {
+    public com.google.protobuf.Parser<LogStatement> getParserForType() {
       return PARSER;
     }
 
-    public serialization.generated.BVerifyAPIMessageSerialization.GetADSProofUpdatesResponse getDefaultInstanceForType() {
+    public serialization.generated.BVerifyAPIMessageSerialization.LogStatement getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface UpdateOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.Update)
+  public interface SignedLogStatementOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:serialization.generated.SignedLogStatement)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
      */
-    java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification> 
-        getModificationsList();
+    boolean hasStatement();
     /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSModification getModifications(int index);
+    serialization.generated.BVerifyAPIMessageSerialization.LogStatement getStatement();
     /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
      */
-    int getModificationsCount();
+    serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder getStatementOrBuilder();
+
     /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
+     * <code>bytes signature = 2;</code>
      */
-    java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder> 
-        getModificationsOrBuilderList();
+    com.google.protobuf.ByteString getSignature();
+  }
+  /**
+   * <pre>
+   **
+   *	Signed Log Statement.
+   * </pre>
+   *
+   * Protobuf type {@code serialization.generated.SignedLogStatement}
+   */
+  public  static final class SignedLogStatement extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:serialization.generated.SignedLogStatement)
+      SignedLogStatementOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SignedLogStatement.newBuilder() to construct.
+    private SignedLogStatement(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SignedLogStatement() {
+      signature_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SignedLogStatement(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder subBuilder = null;
+              if (statement_ != null) {
+                subBuilder = statement_.toBuilder();
+              }
+              statement_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.LogStatement.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(statement_);
+                statement_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+
+              signature_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedLogStatement_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedLogStatement_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder.class);
+    }
+
+    public static final int STATEMENT_FIELD_NUMBER = 1;
+    private serialization.generated.BVerifyAPIMessageSerialization.LogStatement statement_;
     /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
      */
-    serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder getModificationsOrBuilder(
+    public boolean hasStatement() {
+      return statement_ != null;
+    }
+    /**
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
+     */
+    public serialization.generated.BVerifyAPIMessageSerialization.LogStatement getStatement() {
+      return statement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.LogStatement.getDefaultInstance() : statement_;
+    }
+    /**
+     * <code>.serialization.generated.LogStatement statement = 1;</code>
+     */
+    public serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder getStatementOrBuilder() {
+      return getStatement();
+    }
+
+    public static final int SIGNATURE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString signature_;
+    /**
+     * <code>bytes signature = 2;</code>
+     */
+    public com.google.protobuf.ByteString getSignature() {
+      return signature_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (statement_ != null) {
+        output.writeMessage(1, getStatement());
+      }
+      if (!signature_.isEmpty()) {
+        output.writeBytes(2, signature_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (statement_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getStatement());
+      }
+      if (!signature_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, signature_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement)) {
+        return super.equals(obj);
+      }
+      serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement other = (serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement) obj;
+
+      boolean result = true;
+      result = result && (hasStatement() == other.hasStatement());
+      if (hasStatement()) {
+        result = result && getStatement()
+            .equals(other.getStatement());
+      }
+      result = result && getSignature()
+          .equals(other.getSignature());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasStatement()) {
+        hash = (37 * hash) + STATEMENT_FIELD_NUMBER;
+        hash = (53 * hash) + getStatement().hashCode();
+      }
+      hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
+      hash = (53 * hash) + getSignature().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     **
+     *	Signed Log Statement.
+     * </pre>
+     *
+     * Protobuf type {@code serialization.generated.SignedLogStatement}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:serialization.generated.SignedLogStatement)
+        serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedLogStatement_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedLogStatement_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.class, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder.class);
+      }
+
+      // Construct using serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (statementBuilder_ == null) {
+          statement_ = null;
+        } else {
+          statement_ = null;
+          statementBuilder_ = null;
+        }
+        signature_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_SignedLogStatement_descriptor;
+      }
+
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getDefaultInstanceForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.getDefaultInstance();
+      }
+
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement build() {
+        serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement buildPartial() {
+        serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement result = new serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement(this);
+        if (statementBuilder_ == null) {
+          result.statement_ = statement_;
+        } else {
+          result.statement_ = statementBuilder_.build();
+        }
+        result.signature_ = signature_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement) {
+          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement other) {
+        if (other == serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.getDefaultInstance()) return this;
+        if (other.hasStatement()) {
+          mergeStatement(other.getStatement());
+        }
+        if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
+          setSignature(other.getSignature());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private serialization.generated.BVerifyAPIMessageSerialization.LogStatement statement_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          serialization.generated.BVerifyAPIMessageSerialization.LogStatement, serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder> statementBuilder_;
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public boolean hasStatement() {
+        return statementBuilder_ != null || statement_ != null;
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatement getStatement() {
+        if (statementBuilder_ == null) {
+          return statement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.LogStatement.getDefaultInstance() : statement_;
+        } else {
+          return statementBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public Builder setStatement(serialization.generated.BVerifyAPIMessageSerialization.LogStatement value) {
+        if (statementBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          statement_ = value;
+          onChanged();
+        } else {
+          statementBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public Builder setStatement(
+          serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder builderForValue) {
+        if (statementBuilder_ == null) {
+          statement_ = builderForValue.build();
+          onChanged();
+        } else {
+          statementBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public Builder mergeStatement(serialization.generated.BVerifyAPIMessageSerialization.LogStatement value) {
+        if (statementBuilder_ == null) {
+          if (statement_ != null) {
+            statement_ =
+              serialization.generated.BVerifyAPIMessageSerialization.LogStatement.newBuilder(statement_).mergeFrom(value).buildPartial();
+          } else {
+            statement_ = value;
+          }
+          onChanged();
+        } else {
+          statementBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public Builder clearStatement() {
+        if (statementBuilder_ == null) {
+          statement_ = null;
+          onChanged();
+        } else {
+          statement_ = null;
+          statementBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder getStatementBuilder() {
+        
+        onChanged();
+        return getStatementFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      public serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder getStatementOrBuilder() {
+        if (statementBuilder_ != null) {
+          return statementBuilder_.getMessageOrBuilder();
+        } else {
+          return statement_ == null ?
+              serialization.generated.BVerifyAPIMessageSerialization.LogStatement.getDefaultInstance() : statement_;
+        }
+      }
+      /**
+       * <code>.serialization.generated.LogStatement statement = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          serialization.generated.BVerifyAPIMessageSerialization.LogStatement, serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder> 
+          getStatementFieldBuilder() {
+        if (statementBuilder_ == null) {
+          statementBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              serialization.generated.BVerifyAPIMessageSerialization.LogStatement, serialization.generated.BVerifyAPIMessageSerialization.LogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.LogStatementOrBuilder>(
+                  getStatement(),
+                  getParentForChildren(),
+                  isClean());
+          statement_ = null;
+        }
+        return statementBuilder_;
+      }
+
+      private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes signature = 2;</code>
+       */
+      public com.google.protobuf.ByteString getSignature() {
+        return signature_;
+      }
+      /**
+       * <code>bytes signature = 2;</code>
+       */
+      public Builder setSignature(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        signature_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes signature = 2;</code>
+       */
+      public Builder clearSignature() {
+        
+        signature_ = getDefaultInstance().getSignature();
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:serialization.generated.SignedLogStatement)
+    }
+
+    // @@protoc_insertion_point(class_scope:serialization.generated.SignedLogStatement)
+    private static final serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement();
+    }
+
+    public static serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SignedLogStatement>
+        PARSER = new com.google.protobuf.AbstractParser<SignedLogStatement>() {
+      public SignedLogStatement parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SignedLogStatement(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SignedLogStatement> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SignedLogStatement> getParserForType() {
+      return PARSER;
+    }
+
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LogProofOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:serialization.generated.LogProof)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes log_id = 1;</code>
+     */
+    com.google.protobuf.ByteString getLogId();
+
+    /**
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
+     */
+    boolean hasCreateLogStatement();
+    /**
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
+     */
+    serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getCreateLogStatement();
+    /**
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
+     */
+    serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder getCreateLogStatementOrBuilder();
+
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> 
+        getSignedStatementsList();
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getSignedStatements(int index);
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    int getSignedStatementsCount();
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder> 
+        getSignedStatementsOrBuilderList();
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder getSignedStatementsOrBuilder(
         int index);
 
     /**
-     * <code>int32 valid_at_commitment_number = 2;</code>
-     */
-    int getValidAtCommitmentNumber();
-  }
-  /**
-   * <pre>
-   **
-   *	An Update
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.Update}
-   */
-  public  static final class Update extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.Update)
-      UpdateOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Update.newBuilder() to construct.
-    private Update(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Update() {
-      modifications_ = java.util.Collections.emptyList();
-      validAtCommitmentNumber_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Update(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                modifications_ = new java.util.ArrayList<serialization.generated.BVerifyAPIMessageSerialization.ADSModification>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              modifications_.add(
-                  input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.ADSModification.parser(), extensionRegistry));
-              break;
-            }
-            case 16: {
-
-              validAtCommitmentNumber_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          modifications_ = java.util.Collections.unmodifiableList(modifications_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_Update_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_Update_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.Update.class, serialization.generated.BVerifyAPIMessageSerialization.Update.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int MODIFICATIONS_FIELD_NUMBER = 1;
-    private java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification> modifications_;
-    /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-     */
-    public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification> getModificationsList() {
-      return modifications_;
-    }
-    /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-     */
-    public java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder> 
-        getModificationsOrBuilderList() {
-      return modifications_;
-    }
-    /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-     */
-    public int getModificationsCount() {
-      return modifications_.size();
-    }
-    /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-     */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSModification getModifications(int index) {
-      return modifications_.get(index);
-    }
-    /**
-     * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-     */
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder getModificationsOrBuilder(
-        int index) {
-      return modifications_.get(index);
-    }
-
-    public static final int VALID_AT_COMMITMENT_NUMBER_FIELD_NUMBER = 2;
-    private int validAtCommitmentNumber_;
-    /**
-     * <code>int32 valid_at_commitment_number = 2;</code>
-     */
-    public int getValidAtCommitmentNumber() {
-      return validAtCommitmentNumber_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < modifications_.size(); i++) {
-        output.writeMessage(1, modifications_.get(i));
-      }
-      if (validAtCommitmentNumber_ != 0) {
-        output.writeInt32(2, validAtCommitmentNumber_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < modifications_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, modifications_.get(i));
-      }
-      if (validAtCommitmentNumber_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, validAtCommitmentNumber_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.Update)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.Update other = (serialization.generated.BVerifyAPIMessageSerialization.Update) obj;
-
-      boolean result = true;
-      result = result && getModificationsList()
-          .equals(other.getModificationsList());
-      result = result && (getValidAtCommitmentNumber()
-          == other.getValidAtCommitmentNumber());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getModificationsCount() > 0) {
-        hash = (37 * hash) + MODIFICATIONS_FIELD_NUMBER;
-        hash = (53 * hash) + getModificationsList().hashCode();
-      }
-      hash = (37 * hash) + VALID_AT_COMMITMENT_NUMBER_FIELD_NUMBER;
-      hash = (53 * hash) + getValidAtCommitmentNumber();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.Update prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *	An Update
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.Update}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.Update)
-        serialization.generated.BVerifyAPIMessageSerialization.UpdateOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_Update_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_Update_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.Update.class, serialization.generated.BVerifyAPIMessageSerialization.Update.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.Update.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getModificationsFieldBuilder();
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        if (modificationsBuilder_ == null) {
-          modifications_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          modificationsBuilder_.clear();
-        }
-        validAtCommitmentNumber_ = 0;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_Update_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.Update getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.Update.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.Update build() {
-        serialization.generated.BVerifyAPIMessageSerialization.Update result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.Update buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.Update result = new serialization.generated.BVerifyAPIMessageSerialization.Update(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (modificationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            modifications_ = java.util.Collections.unmodifiableList(modifications_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.modifications_ = modifications_;
-        } else {
-          result.modifications_ = modificationsBuilder_.build();
-        }
-        result.validAtCommitmentNumber_ = validAtCommitmentNumber_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.Update) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.Update)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.Update other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.Update.getDefaultInstance()) return this;
-        if (modificationsBuilder_ == null) {
-          if (!other.modifications_.isEmpty()) {
-            if (modifications_.isEmpty()) {
-              modifications_ = other.modifications_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureModificationsIsMutable();
-              modifications_.addAll(other.modifications_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.modifications_.isEmpty()) {
-            if (modificationsBuilder_.isEmpty()) {
-              modificationsBuilder_.dispose();
-              modificationsBuilder_ = null;
-              modifications_ = other.modifications_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              modificationsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getModificationsFieldBuilder() : null;
-            } else {
-              modificationsBuilder_.addAllMessages(other.modifications_);
-            }
-          }
-        }
-        if (other.getValidAtCommitmentNumber() != 0) {
-          setValidAtCommitmentNumber(other.getValidAtCommitmentNumber());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.Update parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.Update) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification> modifications_ =
-        java.util.Collections.emptyList();
-      private void ensureModificationsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          modifications_ = new java.util.ArrayList<serialization.generated.BVerifyAPIMessageSerialization.ADSModification>(modifications_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSModification, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder> modificationsBuilder_;
-
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification> getModificationsList() {
-        if (modificationsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(modifications_);
-        } else {
-          return modificationsBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public int getModificationsCount() {
-        if (modificationsBuilder_ == null) {
-          return modifications_.size();
-        } else {
-          return modificationsBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification getModifications(int index) {
-        if (modificationsBuilder_ == null) {
-          return modifications_.get(index);
-        } else {
-          return modificationsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder setModifications(
-          int index, serialization.generated.BVerifyAPIMessageSerialization.ADSModification value) {
-        if (modificationsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureModificationsIsMutable();
-          modifications_.set(index, value);
-          onChanged();
-        } else {
-          modificationsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder setModifications(
-          int index, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder builderForValue) {
-        if (modificationsBuilder_ == null) {
-          ensureModificationsIsMutable();
-          modifications_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          modificationsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder addModifications(serialization.generated.BVerifyAPIMessageSerialization.ADSModification value) {
-        if (modificationsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureModificationsIsMutable();
-          modifications_.add(value);
-          onChanged();
-        } else {
-          modificationsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder addModifications(
-          int index, serialization.generated.BVerifyAPIMessageSerialization.ADSModification value) {
-        if (modificationsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureModificationsIsMutable();
-          modifications_.add(index, value);
-          onChanged();
-        } else {
-          modificationsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder addModifications(
-          serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder builderForValue) {
-        if (modificationsBuilder_ == null) {
-          ensureModificationsIsMutable();
-          modifications_.add(builderForValue.build());
-          onChanged();
-        } else {
-          modificationsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder addModifications(
-          int index, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder builderForValue) {
-        if (modificationsBuilder_ == null) {
-          ensureModificationsIsMutable();
-          modifications_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          modificationsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder addAllModifications(
-          java.lang.Iterable<? extends serialization.generated.BVerifyAPIMessageSerialization.ADSModification> values) {
-        if (modificationsBuilder_ == null) {
-          ensureModificationsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, modifications_);
-          onChanged();
-        } else {
-          modificationsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder clearModifications() {
-        if (modificationsBuilder_ == null) {
-          modifications_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          modificationsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public Builder removeModifications(int index) {
-        if (modificationsBuilder_ == null) {
-          ensureModificationsIsMutable();
-          modifications_.remove(index);
-          onChanged();
-        } else {
-          modificationsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder getModificationsBuilder(
-          int index) {
-        return getModificationsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder getModificationsOrBuilder(
-          int index) {
-        if (modificationsBuilder_ == null) {
-          return modifications_.get(index);  } else {
-          return modificationsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder> 
-           getModificationsOrBuilderList() {
-        if (modificationsBuilder_ != null) {
-          return modificationsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(modifications_);
-        }
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder addModificationsBuilder() {
-        return getModificationsFieldBuilder().addBuilder(
-            serialization.generated.BVerifyAPIMessageSerialization.ADSModification.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder addModificationsBuilder(
-          int index) {
-        return getModificationsFieldBuilder().addBuilder(
-            index, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .serialization.generated.ADSModification modifications = 1;</code>
-       */
-      public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder> 
-           getModificationsBuilderList() {
-        return getModificationsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.ADSModification, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder> 
-          getModificationsFieldBuilder() {
-        if (modificationsBuilder_ == null) {
-          modificationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              serialization.generated.BVerifyAPIMessageSerialization.ADSModification, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder, serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder>(
-                  modifications_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
-                  getParentForChildren(),
-                  isClean());
-          modifications_ = null;
-        }
-        return modificationsBuilder_;
-      }
-
-      private int validAtCommitmentNumber_ ;
-      /**
-       * <code>int32 valid_at_commitment_number = 2;</code>
-       */
-      public int getValidAtCommitmentNumber() {
-        return validAtCommitmentNumber_;
-      }
-      /**
-       * <code>int32 valid_at_commitment_number = 2;</code>
-       */
-      public Builder setValidAtCommitmentNumber(int value) {
-        
-        validAtCommitmentNumber_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 valid_at_commitment_number = 2;</code>
-       */
-      public Builder clearValidAtCommitmentNumber() {
-        
-        validAtCommitmentNumber_ = 0;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.Update)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.Update)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.Update DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.Update();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.Update getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Update>
-        PARSER = new com.google.protobuf.AbstractParser<Update>() {
-      public Update parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Update(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Update> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Update> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.Update getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ADSRootProofOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.ADSRootProof)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
-     */
-    boolean hasLastUpdatedProof();
-    /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
-     */
-    serialization.generated.MptSerialization.MerklePrefixTrie getLastUpdatedProof();
-    /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
-     */
-    serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getLastUpdatedProofOrBuilder();
-
-    /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-     */
-    boolean hasLastUpdate();
-    /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-     */
-    serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getLastUpdate();
-    /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-     */
-    serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder getLastUpdateOrBuilder();
-
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
     java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> 
-        getFreshnessProofList();
+        getProofOfStatementsList();
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    serialization.generated.MptSerialization.MerklePrefixTrie getFreshnessProof(int index);
+    serialization.generated.MptSerialization.MerklePrefixTrie getProofOfStatements(int index);
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    int getFreshnessProofCount();
+    int getProofOfStatementsCount();
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
     java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-        getFreshnessProofOrBuilderList();
+        getProofOfStatementsOrBuilderList();
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getFreshnessProofOrBuilder(
+    serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getProofOfStatementsOrBuilder(
         int index);
   }
   /**
    * <pre>
    **
-   *	A complete ADS Root Proof
+   * 	Proof For A Log.
    * </pre>
    *
-   * Protobuf type {@code serialization.generated.ADSRootProof}
+   * Protobuf type {@code serialization.generated.LogProof}
    */
-  public  static final class ADSRootProof extends
+  public  static final class LogProof extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.ADSRootProof)
-      ADSRootProofOrBuilder {
+      // @@protoc_insertion_point(message_implements:serialization.generated.LogProof)
+      LogProofOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ADSRootProof.newBuilder() to construct.
-    private ADSRootProof(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use LogProof.newBuilder() to construct.
+    private LogProof(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ADSRootProof() {
-      freshnessProof_ = java.util.Collections.emptyList();
+    private LogProof() {
+      logId_ = com.google.protobuf.ByteString.EMPTY;
+      signedStatements_ = java.util.Collections.emptyList();
+      proofOfStatements_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -4349,7 +2502,7 @@ public final class BVerifyAPIMessageSerialization {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ADSRootProof(
+    private LogProof(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4376,37 +2529,38 @@ public final class BVerifyAPIMessageSerialization {
               break;
             }
             case 10: {
-              serialization.generated.MptSerialization.MerklePrefixTrie.Builder subBuilder = null;
-              if (lastUpdatedProof_ != null) {
-                subBuilder = lastUpdatedProof_.toBuilder();
-              }
-              lastUpdatedProof_ = input.readMessage(serialization.generated.MptSerialization.MerklePrefixTrie.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(lastUpdatedProof_);
-                lastUpdatedProof_ = subBuilder.buildPartial();
-              }
 
+              logId_ = input.readBytes();
               break;
             }
             case 18: {
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder subBuilder = null;
-              if (lastUpdate_ != null) {
-                subBuilder = lastUpdate_.toBuilder();
+              serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder subBuilder = null;
+              if (createLogStatement_ != null) {
+                subBuilder = createLogStatement_.toBuilder();
               }
-              lastUpdate_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.parser(), extensionRegistry);
+              createLogStatement_ = input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.parser(), extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(lastUpdate_);
-                lastUpdate_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(createLogStatement_);
+                createLogStatement_ = subBuilder.buildPartial();
               }
 
               break;
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                freshnessProof_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>();
+                signedStatements_ = new java.util.ArrayList<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement>();
                 mutable_bitField0_ |= 0x00000004;
               }
-              freshnessProof_.add(
+              signedStatements_.add(
+                  input.readMessage(serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.parser(), extensionRegistry));
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                proofOfStatements_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              proofOfStatements_.add(
                   input.readMessage(serialization.generated.MptSerialization.MerklePrefixTrie.parser(), extensionRegistry));
               break;
             }
@@ -4419,7 +2573,10 @@ public final class BVerifyAPIMessageSerialization {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          freshnessProof_ = java.util.Collections.unmodifiableList(freshnessProof_);
+          signedStatements_ = java.util.Collections.unmodifiableList(signedStatements_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          proofOfStatements_ = java.util.Collections.unmodifiableList(proofOfStatements_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -4427,92 +2584,115 @@ public final class BVerifyAPIMessageSerialization {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSRootProof_descriptor;
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogProof_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSRootProof_fieldAccessorTable
+      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogProof_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.class, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder.class);
+              serialization.generated.BVerifyAPIMessageSerialization.LogProof.class, serialization.generated.BVerifyAPIMessageSerialization.LogProof.Builder.class);
     }
 
     private int bitField0_;
-    public static final int LAST_UPDATED_PROOF_FIELD_NUMBER = 1;
-    private serialization.generated.MptSerialization.MerklePrefixTrie lastUpdatedProof_;
+    public static final int LOG_ID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString logId_;
     /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+     * <code>bytes log_id = 1;</code>
      */
-    public boolean hasLastUpdatedProof() {
-      return lastUpdatedProof_ != null;
-    }
-    /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
-     */
-    public serialization.generated.MptSerialization.MerklePrefixTrie getLastUpdatedProof() {
-      return lastUpdatedProof_ == null ? serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance() : lastUpdatedProof_;
-    }
-    /**
-     * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
-     */
-    public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getLastUpdatedProofOrBuilder() {
-      return getLastUpdatedProof();
+    public com.google.protobuf.ByteString getLogId() {
+      return logId_;
     }
 
-    public static final int LAST_UPDATE_FIELD_NUMBER = 2;
-    private serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest lastUpdate_;
+    public static final int CREATE_LOG_STATEMENT_FIELD_NUMBER = 2;
+    private serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement createLogStatement_;
     /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
      */
-    public boolean hasLastUpdate() {
-      return lastUpdate_ != null;
+    public boolean hasCreateLogStatement() {
+      return createLogStatement_ != null;
     }
     /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getLastUpdate() {
-      return lastUpdate_ == null ? serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.getDefaultInstance() : lastUpdate_;
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getCreateLogStatement() {
+      return createLogStatement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.getDefaultInstance() : createLogStatement_;
     }
     /**
-     * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
+     * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
      */
-    public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder getLastUpdateOrBuilder() {
-      return getLastUpdate();
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder getCreateLogStatementOrBuilder() {
+      return getCreateLogStatement();
     }
 
-    public static final int FRESHNESS_PROOF_FIELD_NUMBER = 3;
-    private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> freshnessProof_;
+    public static final int SIGNED_STATEMENTS_FIELD_NUMBER = 3;
+    private java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> signedStatements_;
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
      */
-    public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getFreshnessProofList() {
-      return freshnessProof_;
+    public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> getSignedStatementsList() {
+      return signedStatements_;
     }
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    public java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder> 
+        getSignedStatementsOrBuilderList() {
+      return signedStatements_;
+    }
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    public int getSignedStatementsCount() {
+      return signedStatements_.size();
+    }
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getSignedStatements(int index) {
+      return signedStatements_.get(index);
+    }
+    /**
+     * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
+     */
+    public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder getSignedStatementsOrBuilder(
+        int index) {
+      return signedStatements_.get(index);
+    }
+
+    public static final int PROOF_OF_STATEMENTS_FIELD_NUMBER = 4;
+    private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> proofOfStatements_;
+    /**
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
+     */
+    public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getProofOfStatementsList() {
+      return proofOfStatements_;
+    }
+    /**
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
     public java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-        getFreshnessProofOrBuilderList() {
-      return freshnessProof_;
+        getProofOfStatementsOrBuilderList() {
+      return proofOfStatements_;
     }
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    public int getFreshnessProofCount() {
-      return freshnessProof_.size();
+    public int getProofOfStatementsCount() {
+      return proofOfStatements_.size();
     }
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    public serialization.generated.MptSerialization.MerklePrefixTrie getFreshnessProof(int index) {
-      return freshnessProof_.get(index);
+    public serialization.generated.MptSerialization.MerklePrefixTrie getProofOfStatements(int index) {
+      return proofOfStatements_.get(index);
     }
     /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+     * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
      */
-    public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getFreshnessProofOrBuilder(
+    public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getProofOfStatementsOrBuilder(
         int index) {
-      return freshnessProof_.get(index);
+      return proofOfStatements_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4527,14 +2707,17 @@ public final class BVerifyAPIMessageSerialization {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (lastUpdatedProof_ != null) {
-        output.writeMessage(1, getLastUpdatedProof());
+      if (!logId_.isEmpty()) {
+        output.writeBytes(1, logId_);
       }
-      if (lastUpdate_ != null) {
-        output.writeMessage(2, getLastUpdate());
+      if (createLogStatement_ != null) {
+        output.writeMessage(2, getCreateLogStatement());
       }
-      for (int i = 0; i < freshnessProof_.size(); i++) {
-        output.writeMessage(3, freshnessProof_.get(i));
+      for (int i = 0; i < signedStatements_.size(); i++) {
+        output.writeMessage(3, signedStatements_.get(i));
+      }
+      for (int i = 0; i < proofOfStatements_.size(); i++) {
+        output.writeMessage(4, proofOfStatements_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -4544,17 +2727,21 @@ public final class BVerifyAPIMessageSerialization {
       if (size != -1) return size;
 
       size = 0;
-      if (lastUpdatedProof_ != null) {
+      if (!logId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getLastUpdatedProof());
+          .computeBytesSize(1, logId_);
       }
-      if (lastUpdate_ != null) {
+      if (createLogStatement_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getLastUpdate());
+          .computeMessageSize(2, getCreateLogStatement());
       }
-      for (int i = 0; i < freshnessProof_.size(); i++) {
+      for (int i = 0; i < signedStatements_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, freshnessProof_.get(i));
+          .computeMessageSize(3, signedStatements_.get(i));
+      }
+      for (int i = 0; i < proofOfStatements_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, proofOfStatements_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4566,24 +2753,23 @@ public final class BVerifyAPIMessageSerialization {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof)) {
+      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.LogProof)) {
         return super.equals(obj);
       }
-      serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof other = (serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof) obj;
+      serialization.generated.BVerifyAPIMessageSerialization.LogProof other = (serialization.generated.BVerifyAPIMessageSerialization.LogProof) obj;
 
       boolean result = true;
-      result = result && (hasLastUpdatedProof() == other.hasLastUpdatedProof());
-      if (hasLastUpdatedProof()) {
-        result = result && getLastUpdatedProof()
-            .equals(other.getLastUpdatedProof());
+      result = result && getLogId()
+          .equals(other.getLogId());
+      result = result && (hasCreateLogStatement() == other.hasCreateLogStatement());
+      if (hasCreateLogStatement()) {
+        result = result && getCreateLogStatement()
+            .equals(other.getCreateLogStatement());
       }
-      result = result && (hasLastUpdate() == other.hasLastUpdate());
-      if (hasLastUpdate()) {
-        result = result && getLastUpdate()
-            .equals(other.getLastUpdate());
-      }
-      result = result && getFreshnessProofList()
-          .equals(other.getFreshnessProofList());
+      result = result && getSignedStatementsList()
+          .equals(other.getSignedStatementsList());
+      result = result && getProofOfStatementsList()
+          .equals(other.getProofOfStatementsList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4595,86 +2781,88 @@ public final class BVerifyAPIMessageSerialization {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasLastUpdatedProof()) {
-        hash = (37 * hash) + LAST_UPDATED_PROOF_FIELD_NUMBER;
-        hash = (53 * hash) + getLastUpdatedProof().hashCode();
+      hash = (37 * hash) + LOG_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getLogId().hashCode();
+      if (hasCreateLogStatement()) {
+        hash = (37 * hash) + CREATE_LOG_STATEMENT_FIELD_NUMBER;
+        hash = (53 * hash) + getCreateLogStatement().hashCode();
       }
-      if (hasLastUpdate()) {
-        hash = (37 * hash) + LAST_UPDATE_FIELD_NUMBER;
-        hash = (53 * hash) + getLastUpdate().hashCode();
+      if (getSignedStatementsCount() > 0) {
+        hash = (37 * hash) + SIGNED_STATEMENTS_FIELD_NUMBER;
+        hash = (53 * hash) + getSignedStatementsList().hashCode();
       }
-      if (getFreshnessProofCount() > 0) {
-        hash = (37 * hash) + FRESHNESS_PROOF_FIELD_NUMBER;
-        hash = (53 * hash) + getFreshnessProofList().hashCode();
+      if (getProofOfStatementsCount() > 0) {
+        hash = (37 * hash) + PROOF_OF_STATEMENTS_FIELD_NUMBER;
+        hash = (53 * hash) + getProofOfStatementsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(byte[] data)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseDelimitedFrom(java.io.InputStream input)
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseDelimitedFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parseFrom(
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4686,7 +2874,7 @@ public final class BVerifyAPIMessageSerialization {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof prototype) {
+    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.LogProof prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -4703,28 +2891,28 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	A complete ADS Root Proof
+     * 	Proof For A Log.
      * </pre>
      *
-     * Protobuf type {@code serialization.generated.ADSRootProof}
+     * Protobuf type {@code serialization.generated.LogProof}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.ADSRootProof)
-        serialization.generated.BVerifyAPIMessageSerialization.ADSRootProofOrBuilder {
+        // @@protoc_insertion_point(builder_implements:serialization.generated.LogProof)
+        serialization.generated.BVerifyAPIMessageSerialization.LogProofOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSRootProof_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogProof_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSRootProof_fieldAccessorTable
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogProof_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.class, serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.Builder.class);
+                serialization.generated.BVerifyAPIMessageSerialization.LogProof.class, serialization.generated.BVerifyAPIMessageSerialization.LogProof.Builder.class);
       }
 
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.newBuilder()
+      // Construct using serialization.generated.BVerifyAPIMessageSerialization.LogProof.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4737,71 +2925,79 @@ public final class BVerifyAPIMessageSerialization {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getFreshnessProofFieldBuilder();
+          getSignedStatementsFieldBuilder();
+          getProofOfStatementsFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        if (lastUpdatedProofBuilder_ == null) {
-          lastUpdatedProof_ = null;
+        logId_ = com.google.protobuf.ByteString.EMPTY;
+
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = null;
         } else {
-          lastUpdatedProof_ = null;
-          lastUpdatedProofBuilder_ = null;
+          createLogStatement_ = null;
+          createLogStatementBuilder_ = null;
         }
-        if (lastUpdateBuilder_ == null) {
-          lastUpdate_ = null;
-        } else {
-          lastUpdate_ = null;
-          lastUpdateBuilder_ = null;
-        }
-        if (freshnessProofBuilder_ == null) {
-          freshnessProof_ = java.util.Collections.emptyList();
+        if (signedStatementsBuilder_ == null) {
+          signedStatements_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
         } else {
-          freshnessProofBuilder_.clear();
+          signedStatementsBuilder_.clear();
+        }
+        if (proofOfStatementsBuilder_ == null) {
+          proofOfStatements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          proofOfStatementsBuilder_.clear();
         }
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSRootProof_descriptor;
+        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_LogProof_descriptor;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.getDefaultInstance();
+      public serialization.generated.BVerifyAPIMessageSerialization.LogProof getDefaultInstanceForType() {
+        return serialization.generated.BVerifyAPIMessageSerialization.LogProof.getDefaultInstance();
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof build() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof result = buildPartial();
+      public serialization.generated.BVerifyAPIMessageSerialization.LogProof build() {
+        serialization.generated.BVerifyAPIMessageSerialization.LogProof result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof result = new serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof(this);
+      public serialization.generated.BVerifyAPIMessageSerialization.LogProof buildPartial() {
+        serialization.generated.BVerifyAPIMessageSerialization.LogProof result = new serialization.generated.BVerifyAPIMessageSerialization.LogProof(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        if (lastUpdatedProofBuilder_ == null) {
-          result.lastUpdatedProof_ = lastUpdatedProof_;
+        result.logId_ = logId_;
+        if (createLogStatementBuilder_ == null) {
+          result.createLogStatement_ = createLogStatement_;
         } else {
-          result.lastUpdatedProof_ = lastUpdatedProofBuilder_.build();
+          result.createLogStatement_ = createLogStatementBuilder_.build();
         }
-        if (lastUpdateBuilder_ == null) {
-          result.lastUpdate_ = lastUpdate_;
-        } else {
-          result.lastUpdate_ = lastUpdateBuilder_.build();
-        }
-        if (freshnessProofBuilder_ == null) {
+        if (signedStatementsBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            freshnessProof_ = java.util.Collections.unmodifiableList(freshnessProof_);
+            signedStatements_ = java.util.Collections.unmodifiableList(signedStatements_);
             bitField0_ = (bitField0_ & ~0x00000004);
           }
-          result.freshnessProof_ = freshnessProof_;
+          result.signedStatements_ = signedStatements_;
         } else {
-          result.freshnessProof_ = freshnessProofBuilder_.build();
+          result.signedStatements_ = signedStatementsBuilder_.build();
+        }
+        if (proofOfStatementsBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            proofOfStatements_ = java.util.Collections.unmodifiableList(proofOfStatements_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.proofOfStatements_ = proofOfStatements_;
+        } else {
+          result.proofOfStatements_ = proofOfStatementsBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -4835,45 +3031,71 @@ public final class BVerifyAPIMessageSerialization {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof)other);
+        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.LogProof) {
+          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.LogProof)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof.getDefaultInstance()) return this;
-        if (other.hasLastUpdatedProof()) {
-          mergeLastUpdatedProof(other.getLastUpdatedProof());
+      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.LogProof other) {
+        if (other == serialization.generated.BVerifyAPIMessageSerialization.LogProof.getDefaultInstance()) return this;
+        if (other.getLogId() != com.google.protobuf.ByteString.EMPTY) {
+          setLogId(other.getLogId());
         }
-        if (other.hasLastUpdate()) {
-          mergeLastUpdate(other.getLastUpdate());
+        if (other.hasCreateLogStatement()) {
+          mergeCreateLogStatement(other.getCreateLogStatement());
         }
-        if (freshnessProofBuilder_ == null) {
-          if (!other.freshnessProof_.isEmpty()) {
-            if (freshnessProof_.isEmpty()) {
-              freshnessProof_ = other.freshnessProof_;
+        if (signedStatementsBuilder_ == null) {
+          if (!other.signedStatements_.isEmpty()) {
+            if (signedStatements_.isEmpty()) {
+              signedStatements_ = other.signedStatements_;
               bitField0_ = (bitField0_ & ~0x00000004);
             } else {
-              ensureFreshnessProofIsMutable();
-              freshnessProof_.addAll(other.freshnessProof_);
+              ensureSignedStatementsIsMutable();
+              signedStatements_.addAll(other.signedStatements_);
             }
             onChanged();
           }
         } else {
-          if (!other.freshnessProof_.isEmpty()) {
-            if (freshnessProofBuilder_.isEmpty()) {
-              freshnessProofBuilder_.dispose();
-              freshnessProofBuilder_ = null;
-              freshnessProof_ = other.freshnessProof_;
+          if (!other.signedStatements_.isEmpty()) {
+            if (signedStatementsBuilder_.isEmpty()) {
+              signedStatementsBuilder_.dispose();
+              signedStatementsBuilder_ = null;
+              signedStatements_ = other.signedStatements_;
               bitField0_ = (bitField0_ & ~0x00000004);
-              freshnessProofBuilder_ = 
+              signedStatementsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getFreshnessProofFieldBuilder() : null;
+                   getSignedStatementsFieldBuilder() : null;
             } else {
-              freshnessProofBuilder_.addAllMessages(other.freshnessProof_);
+              signedStatementsBuilder_.addAllMessages(other.signedStatements_);
+            }
+          }
+        }
+        if (proofOfStatementsBuilder_ == null) {
+          if (!other.proofOfStatements_.isEmpty()) {
+            if (proofOfStatements_.isEmpty()) {
+              proofOfStatements_ = other.proofOfStatements_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureProofOfStatementsIsMutable();
+              proofOfStatements_.addAll(other.proofOfStatements_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.proofOfStatements_.isEmpty()) {
+            if (proofOfStatementsBuilder_.isEmpty()) {
+              proofOfStatementsBuilder_.dispose();
+              proofOfStatementsBuilder_ = null;
+              proofOfStatements_ = other.proofOfStatements_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              proofOfStatementsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getProofOfStatementsFieldBuilder() : null;
+            } else {
+              proofOfStatementsBuilder_.addAllMessages(other.proofOfStatements_);
             }
           }
         }
@@ -4890,11 +3112,11 @@ public final class BVerifyAPIMessageSerialization {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof parsedMessage = null;
+        serialization.generated.BVerifyAPIMessageSerialization.LogProof parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof) e.getUnfinishedMessage();
+          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.LogProof) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4905,1245 +3127,630 @@ public final class BVerifyAPIMessageSerialization {
       }
       private int bitField0_;
 
-      private serialization.generated.MptSerialization.MerklePrefixTrie lastUpdatedProof_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> lastUpdatedProofBuilder_;
+      private com.google.protobuf.ByteString logId_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>bytes log_id = 1;</code>
        */
-      public boolean hasLastUpdatedProof() {
-        return lastUpdatedProofBuilder_ != null || lastUpdatedProof_ != null;
+      public com.google.protobuf.ByteString getLogId() {
+        return logId_;
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>bytes log_id = 1;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie getLastUpdatedProof() {
-        if (lastUpdatedProofBuilder_ == null) {
-          return lastUpdatedProof_ == null ? serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance() : lastUpdatedProof_;
+      public Builder setLogId(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        logId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes log_id = 1;</code>
+       */
+      public Builder clearLogId() {
+        
+        logId_ = getDefaultInstance().getLogId();
+        onChanged();
+        return this;
+      }
+
+      private serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement createLogStatement_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder> createLogStatementBuilder_;
+      /**
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
+       */
+      public boolean hasCreateLogStatement() {
+        return createLogStatementBuilder_ != null || createLogStatement_ != null;
+      }
+      /**
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
+       */
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement getCreateLogStatement() {
+        if (createLogStatementBuilder_ == null) {
+          return createLogStatement_ == null ? serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.getDefaultInstance() : createLogStatement_;
         } else {
-          return lastUpdatedProofBuilder_.getMessage();
+          return createLogStatementBuilder_.getMessage();
         }
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public Builder setLastUpdatedProof(serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (lastUpdatedProofBuilder_ == null) {
+      public Builder setCreateLogStatement(serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement value) {
+        if (createLogStatementBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          lastUpdatedProof_ = value;
+          createLogStatement_ = value;
           onChanged();
         } else {
-          lastUpdatedProofBuilder_.setMessage(value);
+          createLogStatementBuilder_.setMessage(value);
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public Builder setLastUpdatedProof(
-          serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (lastUpdatedProofBuilder_ == null) {
-          lastUpdatedProof_ = builderForValue.build();
+      public Builder setCreateLogStatement(
+          serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder builderForValue) {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = builderForValue.build();
           onChanged();
         } else {
-          lastUpdatedProofBuilder_.setMessage(builderForValue.build());
+          createLogStatementBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public Builder mergeLastUpdatedProof(serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (lastUpdatedProofBuilder_ == null) {
-          if (lastUpdatedProof_ != null) {
-            lastUpdatedProof_ =
-              serialization.generated.MptSerialization.MerklePrefixTrie.newBuilder(lastUpdatedProof_).mergeFrom(value).buildPartial();
+      public Builder mergeCreateLogStatement(serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement value) {
+        if (createLogStatementBuilder_ == null) {
+          if (createLogStatement_ != null) {
+            createLogStatement_ =
+              serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.newBuilder(createLogStatement_).mergeFrom(value).buildPartial();
           } else {
-            lastUpdatedProof_ = value;
+            createLogStatement_ = value;
           }
           onChanged();
         } else {
-          lastUpdatedProofBuilder_.mergeFrom(value);
+          createLogStatementBuilder_.mergeFrom(value);
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public Builder clearLastUpdatedProof() {
-        if (lastUpdatedProofBuilder_ == null) {
-          lastUpdatedProof_ = null;
+      public Builder clearCreateLogStatement() {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatement_ = null;
           onChanged();
         } else {
-          lastUpdatedProof_ = null;
-          lastUpdatedProofBuilder_ = null;
+          createLogStatement_ = null;
+          createLogStatementBuilder_ = null;
         }
 
         return this;
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder getLastUpdatedProofBuilder() {
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder getCreateLogStatementBuilder() {
         
         onChanged();
-        return getLastUpdatedProofFieldBuilder().getBuilder();
+        return getCreateLogStatementFieldBuilder().getBuilder();
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getLastUpdatedProofOrBuilder() {
-        if (lastUpdatedProofBuilder_ != null) {
-          return lastUpdatedProofBuilder_.getMessageOrBuilder();
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder getCreateLogStatementOrBuilder() {
+        if (createLogStatementBuilder_ != null) {
+          return createLogStatementBuilder_.getMessageOrBuilder();
         } else {
-          return lastUpdatedProof_ == null ?
-              serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance() : lastUpdatedProof_;
+          return createLogStatement_ == null ?
+              serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.getDefaultInstance() : createLogStatement_;
         }
       }
       /**
-       * <code>.serialization.generated.MerklePrefixTrie last_updated_proof = 1;</code>
+       * <code>.serialization.generated.SignedCreateLogStatement create_log_statement = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-          getLastUpdatedProofFieldBuilder() {
-        if (lastUpdatedProofBuilder_ == null) {
-          lastUpdatedProofBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder>(
-                  getLastUpdatedProof(),
+          serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder> 
+          getCreateLogStatementFieldBuilder() {
+        if (createLogStatementBuilder_ == null) {
+          createLogStatementBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatementOrBuilder>(
+                  getCreateLogStatement(),
                   getParentForChildren(),
                   isClean());
-          lastUpdatedProof_ = null;
+          createLogStatement_ = null;
         }
-        return lastUpdatedProofBuilder_;
+        return createLogStatementBuilder_;
       }
 
-      private serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest lastUpdate_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder> lastUpdateBuilder_;
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public boolean hasLastUpdate() {
-        return lastUpdateBuilder_ != null || lastUpdate_ != null;
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest getLastUpdate() {
-        if (lastUpdateBuilder_ == null) {
-          return lastUpdate_ == null ? serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.getDefaultInstance() : lastUpdate_;
-        } else {
-          return lastUpdateBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public Builder setLastUpdate(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest value) {
-        if (lastUpdateBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          lastUpdate_ = value;
-          onChanged();
-        } else {
-          lastUpdateBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public Builder setLastUpdate(
-          serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder builderForValue) {
-        if (lastUpdateBuilder_ == null) {
-          lastUpdate_ = builderForValue.build();
-          onChanged();
-        } else {
-          lastUpdateBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public Builder mergeLastUpdate(serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest value) {
-        if (lastUpdateBuilder_ == null) {
-          if (lastUpdate_ != null) {
-            lastUpdate_ =
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.newBuilder(lastUpdate_).mergeFrom(value).buildPartial();
-          } else {
-            lastUpdate_ = value;
-          }
-          onChanged();
-        } else {
-          lastUpdateBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public Builder clearLastUpdate() {
-        if (lastUpdateBuilder_ == null) {
-          lastUpdate_ = null;
-          onChanged();
-        } else {
-          lastUpdate_ = null;
-          lastUpdateBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder getLastUpdateBuilder() {
-        
-        onChanged();
-        return getLastUpdateFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      public serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder getLastUpdateOrBuilder() {
-        if (lastUpdateBuilder_ != null) {
-          return lastUpdateBuilder_.getMessageOrBuilder();
-        } else {
-          return lastUpdate_ == null ?
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.getDefaultInstance() : lastUpdate_;
-        }
-      }
-      /**
-       * <code>.serialization.generated.PerformUpdateRequest last_update = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder> 
-          getLastUpdateFieldBuilder() {
-        if (lastUpdateBuilder_ == null) {
-          lastUpdateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequest.Builder, serialization.generated.BVerifyAPIMessageSerialization.PerformUpdateRequestOrBuilder>(
-                  getLastUpdate(),
-                  getParentForChildren(),
-                  isClean());
-          lastUpdate_ = null;
-        }
-        return lastUpdateBuilder_;
-      }
-
-      private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> freshnessProof_ =
+      private java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> signedStatements_ =
         java.util.Collections.emptyList();
-      private void ensureFreshnessProofIsMutable() {
+      private void ensureSignedStatementsIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          freshnessProof_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>(freshnessProof_);
+          signedStatements_ = new java.util.ArrayList<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement>(signedStatements_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> freshnessProofBuilder_;
+          serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder> signedStatementsBuilder_;
 
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getFreshnessProofList() {
-        if (freshnessProofBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(freshnessProof_);
+      public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> getSignedStatementsList() {
+        if (signedStatementsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(signedStatements_);
         } else {
-          return freshnessProofBuilder_.getMessageList();
+          return signedStatementsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public int getFreshnessProofCount() {
-        if (freshnessProofBuilder_ == null) {
-          return freshnessProof_.size();
+      public int getSignedStatementsCount() {
+        if (signedStatementsBuilder_ == null) {
+          return signedStatements_.size();
         } else {
-          return freshnessProofBuilder_.getCount();
+          return signedStatementsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie getFreshnessProof(int index) {
-        if (freshnessProofBuilder_ == null) {
-          return freshnessProof_.get(index);
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement getSignedStatements(int index) {
+        if (signedStatementsBuilder_ == null) {
+          return signedStatements_.get(index);
         } else {
-          return freshnessProofBuilder_.getMessage(index);
+          return signedStatementsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder setFreshnessProof(
-          int index, serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (freshnessProofBuilder_ == null) {
+      public Builder setSignedStatements(
+          int index, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement value) {
+        if (signedStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.set(index, value);
+          ensureSignedStatementsIsMutable();
+          signedStatements_.set(index, value);
           onChanged();
         } else {
-          freshnessProofBuilder_.setMessage(index, value);
+          signedStatementsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder setFreshnessProof(
-          int index, serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (freshnessProofBuilder_ == null) {
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.set(index, builderForValue.build());
+      public Builder setSignedStatements(
+          int index, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder builderForValue) {
+        if (signedStatementsBuilder_ == null) {
+          ensureSignedStatementsIsMutable();
+          signedStatements_.set(index, builderForValue.build());
           onChanged();
         } else {
-          freshnessProofBuilder_.setMessage(index, builderForValue.build());
+          signedStatementsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder addFreshnessProof(serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (freshnessProofBuilder_ == null) {
+      public Builder addSignedStatements(serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement value) {
+        if (signedStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.add(value);
+          ensureSignedStatementsIsMutable();
+          signedStatements_.add(value);
           onChanged();
         } else {
-          freshnessProofBuilder_.addMessage(value);
+          signedStatementsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder addFreshnessProof(
-          int index, serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (freshnessProofBuilder_ == null) {
+      public Builder addSignedStatements(
+          int index, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement value) {
+        if (signedStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.add(index, value);
+          ensureSignedStatementsIsMutable();
+          signedStatements_.add(index, value);
           onChanged();
         } else {
-          freshnessProofBuilder_.addMessage(index, value);
+          signedStatementsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder addFreshnessProof(
-          serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (freshnessProofBuilder_ == null) {
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.add(builderForValue.build());
+      public Builder addSignedStatements(
+          serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder builderForValue) {
+        if (signedStatementsBuilder_ == null) {
+          ensureSignedStatementsIsMutable();
+          signedStatements_.add(builderForValue.build());
           onChanged();
         } else {
-          freshnessProofBuilder_.addMessage(builderForValue.build());
+          signedStatementsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder addFreshnessProof(
-          int index, serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (freshnessProofBuilder_ == null) {
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.add(index, builderForValue.build());
+      public Builder addSignedStatements(
+          int index, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder builderForValue) {
+        if (signedStatementsBuilder_ == null) {
+          ensureSignedStatementsIsMutable();
+          signedStatements_.add(index, builderForValue.build());
           onChanged();
         } else {
-          freshnessProofBuilder_.addMessage(index, builderForValue.build());
+          signedStatementsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder addAllFreshnessProof(
-          java.lang.Iterable<? extends serialization.generated.MptSerialization.MerklePrefixTrie> values) {
-        if (freshnessProofBuilder_ == null) {
-          ensureFreshnessProofIsMutable();
+      public Builder addAllSignedStatements(
+          java.lang.Iterable<? extends serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement> values) {
+        if (signedStatementsBuilder_ == null) {
+          ensureSignedStatementsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, freshnessProof_);
+              values, signedStatements_);
           onChanged();
         } else {
-          freshnessProofBuilder_.addAllMessages(values);
+          signedStatementsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder clearFreshnessProof() {
-        if (freshnessProofBuilder_ == null) {
-          freshnessProof_ = java.util.Collections.emptyList();
+      public Builder clearSignedStatements() {
+        if (signedStatementsBuilder_ == null) {
+          signedStatements_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
-          freshnessProofBuilder_.clear();
+          signedStatementsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public Builder removeFreshnessProof(int index) {
-        if (freshnessProofBuilder_ == null) {
-          ensureFreshnessProofIsMutable();
-          freshnessProof_.remove(index);
+      public Builder removeSignedStatements(int index) {
+        if (signedStatementsBuilder_ == null) {
+          ensureSignedStatementsIsMutable();
+          signedStatements_.remove(index);
           onChanged();
         } else {
-          freshnessProofBuilder_.remove(index);
+          signedStatementsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder getFreshnessProofBuilder(
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder getSignedStatementsBuilder(
           int index) {
-        return getFreshnessProofFieldBuilder().getBuilder(index);
+        return getSignedStatementsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getFreshnessProofOrBuilder(
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder getSignedStatementsOrBuilder(
           int index) {
-        if (freshnessProofBuilder_ == null) {
-          return freshnessProof_.get(index);  } else {
-          return freshnessProofBuilder_.getMessageOrBuilder(index);
+        if (signedStatementsBuilder_ == null) {
+          return signedStatements_.get(index);  } else {
+          return signedStatementsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-           getFreshnessProofOrBuilderList() {
-        if (freshnessProofBuilder_ != null) {
-          return freshnessProofBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder> 
+           getSignedStatementsOrBuilderList() {
+        if (signedStatementsBuilder_ != null) {
+          return signedStatementsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(freshnessProof_);
+          return java.util.Collections.unmodifiableList(signedStatements_);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addFreshnessProofBuilder() {
-        return getFreshnessProofFieldBuilder().addBuilder(
-            serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance());
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder addSignedStatementsBuilder() {
+        return getSignedStatementsFieldBuilder().addBuilder(
+            serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.getDefaultInstance());
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addFreshnessProofBuilder(
+      public serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder addSignedStatementsBuilder(
           int index) {
-        return getFreshnessProofFieldBuilder().addBuilder(
-            index, serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance());
+        return getSignedStatementsFieldBuilder().addBuilder(
+            index, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.getDefaultInstance());
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie freshness_proof = 3;</code>
+       * <code>repeated .serialization.generated.SignedLogStatement signed_statements = 3;</code>
        */
-      public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie.Builder> 
-           getFreshnessProofBuilderList() {
-        return getFreshnessProofFieldBuilder().getBuilderList();
+      public java.util.List<serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder> 
+           getSignedStatementsBuilderList() {
+        return getSignedStatementsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-          getFreshnessProofFieldBuilder() {
-        if (freshnessProofBuilder_ == null) {
-          freshnessProofBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder>(
-                  freshnessProof_,
+          serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder> 
+          getSignedStatementsFieldBuilder() {
+        if (signedStatementsBuilder_ == null) {
+          signedStatementsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement.Builder, serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatementOrBuilder>(
+                  signedStatements_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
-          freshnessProof_ = null;
+          signedStatements_ = null;
         }
-        return freshnessProofBuilder_;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return signedStatementsBuilder_;
       }
 
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.ADSRootProof)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.ADSRootProof)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ADSRootProof>
-        PARSER = new com.google.protobuf.AbstractParser<ADSRootProof>() {
-      public ADSRootProof parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ADSRootProof(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ADSRootProof> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ADSRootProof> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSRootProof getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ADSProofUpdatesOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.ADSProofUpdates)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> 
-        getUpdatesList();
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    serialization.generated.MptSerialization.MerklePrefixTrie getUpdates(int index);
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    int getUpdatesCount();
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-        getUpdatesOrBuilderList();
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getUpdatesOrBuilder(
-        int index);
-  }
-  /**
-   * <pre>
-   **
-   *	Updates to an ADS Root Proof
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.ADSProofUpdates}
-   */
-  public  static final class ADSProofUpdates extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.ADSProofUpdates)
-      ADSProofUpdatesOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ADSProofUpdates.newBuilder() to construct.
-    private ADSProofUpdates(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ADSProofUpdates() {
-      updates_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ADSProofUpdates(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                updates_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              updates_.add(
-                  input.readMessage(serialization.generated.MptSerialization.MerklePrefixTrie.parser(), extensionRegistry));
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          updates_ = java.util.Collections.unmodifiableList(updates_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSProofUpdates_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSProofUpdates_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.class, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder.class);
-    }
-
-    public static final int UPDATES_FIELD_NUMBER = 1;
-    private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> updates_;
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getUpdatesList() {
-      return updates_;
-    }
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    public java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-        getUpdatesOrBuilderList() {
-      return updates_;
-    }
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    public int getUpdatesCount() {
-      return updates_.size();
-    }
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    public serialization.generated.MptSerialization.MerklePrefixTrie getUpdates(int index) {
-      return updates_.get(index);
-    }
-    /**
-     * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
-     */
-    public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getUpdatesOrBuilder(
-        int index) {
-      return updates_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < updates_.size(); i++) {
-        output.writeMessage(1, updates_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < updates_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, updates_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates other = (serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates) obj;
-
-      boolean result = true;
-      result = result && getUpdatesList()
-          .equals(other.getUpdatesList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getUpdatesCount() > 0) {
-        hash = (37 * hash) + UPDATES_FIELD_NUMBER;
-        hash = (53 * hash) + getUpdatesList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     *	Updates to an ADS Root Proof
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.ADSProofUpdates}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.ADSProofUpdates)
-        serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdatesOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSProofUpdates_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSProofUpdates_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.class, serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getUpdatesFieldBuilder();
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        if (updatesBuilder_ == null) {
-          updates_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          updatesBuilder_.clear();
-        }
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSProofUpdates_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates build() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates result = new serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates(this);
-        int from_bitField0_ = bitField0_;
-        if (updatesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            updates_ = java.util.Collections.unmodifiableList(updates_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.updates_ = updates_;
-        } else {
-          result.updates_ = updatesBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates.getDefaultInstance()) return this;
-        if (updatesBuilder_ == null) {
-          if (!other.updates_.isEmpty()) {
-            if (updates_.isEmpty()) {
-              updates_ = other.updates_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureUpdatesIsMutable();
-              updates_.addAll(other.updates_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.updates_.isEmpty()) {
-            if (updatesBuilder_.isEmpty()) {
-              updatesBuilder_.dispose();
-              updatesBuilder_ = null;
-              updates_ = other.updates_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              updatesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getUpdatesFieldBuilder() : null;
-            } else {
-              updatesBuilder_.addAllMessages(other.updates_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> updates_ =
+      private java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> proofOfStatements_ =
         java.util.Collections.emptyList();
-      private void ensureUpdatesIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          updates_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>(updates_);
-          bitField0_ |= 0x00000001;
+      private void ensureProofOfStatementsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          proofOfStatements_ = new java.util.ArrayList<serialization.generated.MptSerialization.MerklePrefixTrie>(proofOfStatements_);
+          bitField0_ |= 0x00000008;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> updatesBuilder_;
+          serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> proofOfStatementsBuilder_;
 
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getUpdatesList() {
-        if (updatesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(updates_);
+      public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie> getProofOfStatementsList() {
+        if (proofOfStatementsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(proofOfStatements_);
         } else {
-          return updatesBuilder_.getMessageList();
+          return proofOfStatementsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public int getUpdatesCount() {
-        if (updatesBuilder_ == null) {
-          return updates_.size();
+      public int getProofOfStatementsCount() {
+        if (proofOfStatementsBuilder_ == null) {
+          return proofOfStatements_.size();
         } else {
-          return updatesBuilder_.getCount();
+          return proofOfStatementsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie getUpdates(int index) {
-        if (updatesBuilder_ == null) {
-          return updates_.get(index);
+      public serialization.generated.MptSerialization.MerklePrefixTrie getProofOfStatements(int index) {
+        if (proofOfStatementsBuilder_ == null) {
+          return proofOfStatements_.get(index);
         } else {
-          return updatesBuilder_.getMessage(index);
+          return proofOfStatementsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder setUpdates(
+      public Builder setProofOfStatements(
           int index, serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (updatesBuilder_ == null) {
+        if (proofOfStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUpdatesIsMutable();
-          updates_.set(index, value);
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.set(index, value);
           onChanged();
         } else {
-          updatesBuilder_.setMessage(index, value);
+          proofOfStatementsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder setUpdates(
+      public Builder setProofOfStatements(
           int index, serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (updatesBuilder_ == null) {
-          ensureUpdatesIsMutable();
-          updates_.set(index, builderForValue.build());
+        if (proofOfStatementsBuilder_ == null) {
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.set(index, builderForValue.build());
           onChanged();
         } else {
-          updatesBuilder_.setMessage(index, builderForValue.build());
+          proofOfStatementsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder addUpdates(serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (updatesBuilder_ == null) {
+      public Builder addProofOfStatements(serialization.generated.MptSerialization.MerklePrefixTrie value) {
+        if (proofOfStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUpdatesIsMutable();
-          updates_.add(value);
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.add(value);
           onChanged();
         } else {
-          updatesBuilder_.addMessage(value);
+          proofOfStatementsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder addUpdates(
+      public Builder addProofOfStatements(
           int index, serialization.generated.MptSerialization.MerklePrefixTrie value) {
-        if (updatesBuilder_ == null) {
+        if (proofOfStatementsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureUpdatesIsMutable();
-          updates_.add(index, value);
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.add(index, value);
           onChanged();
         } else {
-          updatesBuilder_.addMessage(index, value);
+          proofOfStatementsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder addUpdates(
+      public Builder addProofOfStatements(
           serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (updatesBuilder_ == null) {
-          ensureUpdatesIsMutable();
-          updates_.add(builderForValue.build());
+        if (proofOfStatementsBuilder_ == null) {
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.add(builderForValue.build());
           onChanged();
         } else {
-          updatesBuilder_.addMessage(builderForValue.build());
+          proofOfStatementsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder addUpdates(
+      public Builder addProofOfStatements(
           int index, serialization.generated.MptSerialization.MerklePrefixTrie.Builder builderForValue) {
-        if (updatesBuilder_ == null) {
-          ensureUpdatesIsMutable();
-          updates_.add(index, builderForValue.build());
+        if (proofOfStatementsBuilder_ == null) {
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.add(index, builderForValue.build());
           onChanged();
         } else {
-          updatesBuilder_.addMessage(index, builderForValue.build());
+          proofOfStatementsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder addAllUpdates(
+      public Builder addAllProofOfStatements(
           java.lang.Iterable<? extends serialization.generated.MptSerialization.MerklePrefixTrie> values) {
-        if (updatesBuilder_ == null) {
-          ensureUpdatesIsMutable();
+        if (proofOfStatementsBuilder_ == null) {
+          ensureProofOfStatementsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, updates_);
+              values, proofOfStatements_);
           onChanged();
         } else {
-          updatesBuilder_.addAllMessages(values);
+          proofOfStatementsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder clearUpdates() {
-        if (updatesBuilder_ == null) {
-          updates_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+      public Builder clearProofOfStatements() {
+        if (proofOfStatementsBuilder_ == null) {
+          proofOfStatements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
-          updatesBuilder_.clear();
+          proofOfStatementsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public Builder removeUpdates(int index) {
-        if (updatesBuilder_ == null) {
-          ensureUpdatesIsMutable();
-          updates_.remove(index);
+      public Builder removeProofOfStatements(int index) {
+        if (proofOfStatementsBuilder_ == null) {
+          ensureProofOfStatementsIsMutable();
+          proofOfStatements_.remove(index);
           onChanged();
         } else {
-          updatesBuilder_.remove(index);
+          proofOfStatementsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder getUpdatesBuilder(
+      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder getProofOfStatementsBuilder(
           int index) {
-        return getUpdatesFieldBuilder().getBuilder(index);
+        return getProofOfStatementsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getUpdatesOrBuilder(
+      public serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder getProofOfStatementsOrBuilder(
           int index) {
-        if (updatesBuilder_ == null) {
-          return updates_.get(index);  } else {
-          return updatesBuilder_.getMessageOrBuilder(index);
+        if (proofOfStatementsBuilder_ == null) {
+          return proofOfStatements_.get(index);  } else {
+          return proofOfStatementsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
       public java.util.List<? extends serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-           getUpdatesOrBuilderList() {
-        if (updatesBuilder_ != null) {
-          return updatesBuilder_.getMessageOrBuilderList();
+           getProofOfStatementsOrBuilderList() {
+        if (proofOfStatementsBuilder_ != null) {
+          return proofOfStatementsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(updates_);
+          return java.util.Collections.unmodifiableList(proofOfStatements_);
         }
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addUpdatesBuilder() {
-        return getUpdatesFieldBuilder().addBuilder(
+      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addProofOfStatementsBuilder() {
+        return getProofOfStatementsFieldBuilder().addBuilder(
             serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance());
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
-      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addUpdatesBuilder(
+      public serialization.generated.MptSerialization.MerklePrefixTrie.Builder addProofOfStatementsBuilder(
           int index) {
-        return getUpdatesFieldBuilder().addBuilder(
+        return getProofOfStatementsFieldBuilder().addBuilder(
             index, serialization.generated.MptSerialization.MerklePrefixTrie.getDefaultInstance());
       }
       /**
-       * <code>repeated .serialization.generated.MerklePrefixTrie updates = 1;</code>
+       * <code>repeated .serialization.generated.MerklePrefixTrie proof_of_statements = 4;</code>
        */
       public java.util.List<serialization.generated.MptSerialization.MerklePrefixTrie.Builder> 
-           getUpdatesBuilderList() {
-        return getUpdatesFieldBuilder().getBuilderList();
+           getProofOfStatementsBuilderList() {
+        return getProofOfStatementsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder> 
-          getUpdatesFieldBuilder() {
-        if (updatesBuilder_ == null) {
-          updatesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getProofOfStatementsFieldBuilder() {
+        if (proofOfStatementsBuilder_ == null) {
+          proofOfStatementsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               serialization.generated.MptSerialization.MerklePrefixTrie, serialization.generated.MptSerialization.MerklePrefixTrie.Builder, serialization.generated.MptSerialization.MerklePrefixTrieOrBuilder>(
-                  updates_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  proofOfStatements_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
-          updates_ = null;
+          proofOfStatements_ = null;
         }
-        return updatesBuilder_;
+        return proofOfStatementsBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6156,624 +3763,69 @@ public final class BVerifyAPIMessageSerialization {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:serialization.generated.ADSProofUpdates)
+      // @@protoc_insertion_point(builder_scope:serialization.generated.LogProof)
     }
 
-    // @@protoc_insertion_point(class_scope:serialization.generated.ADSProofUpdates)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:serialization.generated.LogProof)
+    private static final serialization.generated.BVerifyAPIMessageSerialization.LogProof DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates();
+      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.LogProof();
     }
 
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getDefaultInstance() {
+    public static serialization.generated.BVerifyAPIMessageSerialization.LogProof getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ADSProofUpdates>
-        PARSER = new com.google.protobuf.AbstractParser<ADSProofUpdates>() {
-      public ADSProofUpdates parsePartialFrom(
+    private static final com.google.protobuf.Parser<LogProof>
+        PARSER = new com.google.protobuf.AbstractParser<LogProof>() {
+      public LogProof parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ADSProofUpdates(input, extensionRegistry);
+        return new LogProof(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ADSProofUpdates> parser() {
+    public static com.google.protobuf.Parser<LogProof> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ADSProofUpdates> getParserForType() {
+    public com.google.protobuf.Parser<LogProof> getParserForType() {
       return PARSER;
     }
 
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSProofUpdates getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ADSModificationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:serialization.generated.ADSModification)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    com.google.protobuf.ByteString getAdsId();
-
-    /**
-     * <code>bytes new_value = 2;</code>
-     */
-    com.google.protobuf.ByteString getNewValue();
-  }
-  /**
-   * <pre>
-   **
-   * 	A Single ADS Modification
-   * </pre>
-   *
-   * Protobuf type {@code serialization.generated.ADSModification}
-   */
-  public  static final class ADSModification extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:serialization.generated.ADSModification)
-      ADSModificationOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ADSModification.newBuilder() to construct.
-    private ADSModification(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ADSModification() {
-      adsId_ = com.google.protobuf.ByteString.EMPTY;
-      newValue_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ADSModification(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-
-              adsId_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              newValue_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSModification_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSModification_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              serialization.generated.BVerifyAPIMessageSerialization.ADSModification.class, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder.class);
-    }
-
-    public static final int ADS_ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString adsId_;
-    /**
-     * <code>bytes ads_id = 1;</code>
-     */
-    public com.google.protobuf.ByteString getAdsId() {
-      return adsId_;
-    }
-
-    public static final int NEW_VALUE_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString newValue_;
-    /**
-     * <code>bytes new_value = 2;</code>
-     */
-    public com.google.protobuf.ByteString getNewValue() {
-      return newValue_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!adsId_.isEmpty()) {
-        output.writeBytes(1, adsId_);
-      }
-      if (!newValue_.isEmpty()) {
-        output.writeBytes(2, newValue_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!adsId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, adsId_);
-      }
-      if (!newValue_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, newValue_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSModification)) {
-        return super.equals(obj);
-      }
-      serialization.generated.BVerifyAPIMessageSerialization.ADSModification other = (serialization.generated.BVerifyAPIMessageSerialization.ADSModification) obj;
-
-      boolean result = true;
-      result = result && getAdsId()
-          .equals(other.getAdsId());
-      result = result && getNewValue()
-          .equals(other.getNewValue());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ADS_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getAdsId().hashCode();
-      hash = (37 * hash) + NEW_VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getNewValue().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(serialization.generated.BVerifyAPIMessageSerialization.ADSModification prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     **
-     * 	A Single ADS Modification
-     * </pre>
-     *
-     * Protobuf type {@code serialization.generated.ADSModification}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:serialization.generated.ADSModification)
-        serialization.generated.BVerifyAPIMessageSerialization.ADSModificationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSModification_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSModification_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                serialization.generated.BVerifyAPIMessageSerialization.ADSModification.class, serialization.generated.BVerifyAPIMessageSerialization.ADSModification.Builder.class);
-      }
-
-      // Construct using serialization.generated.BVerifyAPIMessageSerialization.ADSModification.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        adsId_ = com.google.protobuf.ByteString.EMPTY;
-
-        newValue_ = com.google.protobuf.ByteString.EMPTY;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.internal_static_serialization_generated_ADSModification_descriptor;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification getDefaultInstanceForType() {
-        return serialization.generated.BVerifyAPIMessageSerialization.ADSModification.getDefaultInstance();
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification build() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSModification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public serialization.generated.BVerifyAPIMessageSerialization.ADSModification buildPartial() {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSModification result = new serialization.generated.BVerifyAPIMessageSerialization.ADSModification(this);
-        result.adsId_ = adsId_;
-        result.newValue_ = newValue_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof serialization.generated.BVerifyAPIMessageSerialization.ADSModification) {
-          return mergeFrom((serialization.generated.BVerifyAPIMessageSerialization.ADSModification)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(serialization.generated.BVerifyAPIMessageSerialization.ADSModification other) {
-        if (other == serialization.generated.BVerifyAPIMessageSerialization.ADSModification.getDefaultInstance()) return this;
-        if (other.getAdsId() != com.google.protobuf.ByteString.EMPTY) {
-          setAdsId(other.getAdsId());
-        }
-        if (other.getNewValue() != com.google.protobuf.ByteString.EMPTY) {
-          setNewValue(other.getNewValue());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        serialization.generated.BVerifyAPIMessageSerialization.ADSModification parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (serialization.generated.BVerifyAPIMessageSerialization.ADSModification) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString adsId_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public com.google.protobuf.ByteString getAdsId() {
-        return adsId_;
-      }
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public Builder setAdsId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        adsId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes ads_id = 1;</code>
-       */
-      public Builder clearAdsId() {
-        
-        adsId_ = getDefaultInstance().getAdsId();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString newValue_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes new_value = 2;</code>
-       */
-      public com.google.protobuf.ByteString getNewValue() {
-        return newValue_;
-      }
-      /**
-       * <code>bytes new_value = 2;</code>
-       */
-      public Builder setNewValue(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        newValue_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes new_value = 2;</code>
-       */
-      public Builder clearNewValue() {
-        
-        newValue_ = getDefaultInstance().getNewValue();
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:serialization.generated.ADSModification)
-    }
-
-    // @@protoc_insertion_point(class_scope:serialization.generated.ADSModification)
-    private static final serialization.generated.BVerifyAPIMessageSerialization.ADSModification DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new serialization.generated.BVerifyAPIMessageSerialization.ADSModification();
-    }
-
-    public static serialization.generated.BVerifyAPIMessageSerialization.ADSModification getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ADSModification>
-        PARSER = new com.google.protobuf.AbstractParser<ADSModification>() {
-      public ADSModification parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ADSModification(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ADSModification> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ADSModification> getParserForType() {
-      return PARSER;
-    }
-
-    public serialization.generated.BVerifyAPIMessageSerialization.ADSModification getDefaultInstanceForType() {
+    public serialization.generated.BVerifyAPIMessageSerialization.LogProof getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_PerformUpdateRequest_descriptor;
+    internal_static_serialization_generated_SignedCreateLogStatement_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_PerformUpdateRequest_fieldAccessorTable;
+      internal_static_serialization_generated_SignedCreateLogStatement_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_PerformUpdateResponse_descriptor;
+    internal_static_serialization_generated_CreateLogStatement_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_PerformUpdateResponse_fieldAccessorTable;
+      internal_static_serialization_generated_CreateLogStatement_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_ProveADSRootRequest_descriptor;
+    internal_static_serialization_generated_LogStatement_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_ProveADSRootRequest_fieldAccessorTable;
+      internal_static_serialization_generated_LogStatement_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_ProveADSRootResponse_descriptor;
+    internal_static_serialization_generated_SignedLogStatement_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_ProveADSRootResponse_fieldAccessorTable;
+      internal_static_serialization_generated_SignedLogStatement_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor;
+    internal_static_serialization_generated_LogProof_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_GetADSProofUpdatesRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_GetADSProofUpdatesResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_Update_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_Update_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_ADSRootProof_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_ADSRootProof_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_ADSProofUpdates_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_ADSProofUpdates_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_serialization_generated_ADSModification_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_serialization_generated_ADSModification_fieldAccessorTable;
+      internal_static_serialization_generated_LogProof_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6784,30 +3836,24 @@ public final class BVerifyAPIMessageSerialization {
   static {
     java.lang.String[] descriptorData = {
       "\n\037protos/bverifyprotocolapi.proto\022\027seria" +
-      "lization.generated\032\020protos/mpt.proto\"[\n\024" +
-      "PerformUpdateRequest\022/\n\006update\030\001 \001(\0132\037.s" +
-      "erialization.generated.Update\022\022\n\nsignatu" +
-      "res\030\002 \003(\014\")\n\025PerformUpdateResponse\022\020\n\010ac" +
-      "cepted\030\001 \001(\010\"%\n\023ProveADSRootRequest\022\016\n\006a" +
-      "ds_id\030\001 \001(\014\"L\n\024ProveADSRootResponse\0224\n\005p" +
-      "roof\030\001 \001(\0132%.serialization.generated.ADS" +
-      "RootProof\"D\n\031GetADSProofUpdatesRequest\022\016" +
-      "\n\006ads_id\030\001 \001(\014\022\027\n\017from_commitment\030\002 \001(\005\"" +
-      "W\n\032GetADSProofUpdatesResponse\0229\n\007updates" +
-      "\030\001 \001(\0132(.serialization.generated.ADSProo" +
-      "fUpdates\"m\n\006Update\022?\n\rmodifications\030\001 \003(" +
-      "\0132(.serialization.generated.ADSModificat" +
-      "ion\022\"\n\032valid_at_commitment_number\030\002 \001(\005\"" +
-      "\335\001\n\014ADSRootProof\022E\n\022last_updated_proof\030\001" +
-      " \001(\0132).serialization.generated.MerklePre" +
-      "fixTrie\022B\n\013last_update\030\002 \001(\0132-.serializa" +
-      "tion.generated.PerformUpdateRequest\022B\n\017f" +
-      "reshness_proof\030\003 \003(\0132).serialization.gen" +
-      "erated.MerklePrefixTrie\"M\n\017ADSProofUpdat" +
-      "es\022:\n\007updates\030\001 \003(\0132).serialization.gene" +
-      "rated.MerklePrefixTrie\"4\n\017ADSModificatio" +
-      "n\022\016\n\006ads_id\030\001 \001(\014\022\021\n\tnew_value\030\002 \001(\014B B\036" +
-      "BVerifyAPIMessageSerializationb\006proto3"
+      "lization.generated\032\020protos/mpt.proto\"x\n\030" +
+      "SignedCreateLogStatement\022I\n\024create_log_s" +
+      "tatement\030\001 \001(\0132+.serialization.generated" +
+      ".CreateLogStatement\022\021\n\tsignature\030\002 \001(\014\"O" +
+      "\n\022CreateLogStatement\022\036\n\026controlling_publ" +
+      "ic_key\030\001 \001(\014\022\031\n\021initial_statement\030\002 \001(\014\"" +
+      "0\n\014LogStatement\022\016\n\006log_id\030\001 \001(\014\022\020\n\010statm" +
+      "ent\030\002 \001(\014\"a\n\022SignedLogStatement\0228\n\tstate" +
+      "ment\030\001 \001(\0132%.serialization.generated.Log" +
+      "Statement\022\021\n\tsignature\030\002 \001(\014\"\373\001\n\010LogProo" +
+      "f\022\016\n\006log_id\030\001 \001(\014\022O\n\024create_log_statemen" +
+      "t\030\002 \001(\01321.serialization.generated.Signed" +
+      "CreateLogStatement\022F\n\021signed_statements\030" +
+      "\003 \003(\0132+.serialization.generated.SignedLo" +
+      "gStatement\022F\n\023proof_of_statements\030\004 \003(\0132" +
+      ").serialization.generated.MerklePrefixTr" +
+      "ieB B\036BVerifyAPIMessageSerializationb\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -6822,66 +3868,36 @@ public final class BVerifyAPIMessageSerialization {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           serialization.generated.MptSerialization.getDescriptor(),
         }, assigner);
-    internal_static_serialization_generated_PerformUpdateRequest_descriptor =
+    internal_static_serialization_generated_SignedCreateLogStatement_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_serialization_generated_PerformUpdateRequest_fieldAccessorTable = new
+    internal_static_serialization_generated_SignedCreateLogStatement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_PerformUpdateRequest_descriptor,
-        new java.lang.String[] { "Update", "Signatures", });
-    internal_static_serialization_generated_PerformUpdateResponse_descriptor =
+        internal_static_serialization_generated_SignedCreateLogStatement_descriptor,
+        new java.lang.String[] { "CreateLogStatement", "Signature", });
+    internal_static_serialization_generated_CreateLogStatement_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_serialization_generated_PerformUpdateResponse_fieldAccessorTable = new
+    internal_static_serialization_generated_CreateLogStatement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_PerformUpdateResponse_descriptor,
-        new java.lang.String[] { "Accepted", });
-    internal_static_serialization_generated_ProveADSRootRequest_descriptor =
+        internal_static_serialization_generated_CreateLogStatement_descriptor,
+        new java.lang.String[] { "ControllingPublicKey", "InitialStatement", });
+    internal_static_serialization_generated_LogStatement_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_serialization_generated_ProveADSRootRequest_fieldAccessorTable = new
+    internal_static_serialization_generated_LogStatement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_ProveADSRootRequest_descriptor,
-        new java.lang.String[] { "AdsId", });
-    internal_static_serialization_generated_ProveADSRootResponse_descriptor =
+        internal_static_serialization_generated_LogStatement_descriptor,
+        new java.lang.String[] { "LogId", "Statment", });
+    internal_static_serialization_generated_SignedLogStatement_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_serialization_generated_ProveADSRootResponse_fieldAccessorTable = new
+    internal_static_serialization_generated_SignedLogStatement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_ProveADSRootResponse_descriptor,
-        new java.lang.String[] { "Proof", });
-    internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor =
+        internal_static_serialization_generated_SignedLogStatement_descriptor,
+        new java.lang.String[] { "Statement", "Signature", });
+    internal_static_serialization_generated_LogProof_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_serialization_generated_GetADSProofUpdatesRequest_fieldAccessorTable = new
+    internal_static_serialization_generated_LogProof_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_GetADSProofUpdatesRequest_descriptor,
-        new java.lang.String[] { "AdsId", "FromCommitment", });
-    internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_serialization_generated_GetADSProofUpdatesResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_GetADSProofUpdatesResponse_descriptor,
-        new java.lang.String[] { "Updates", });
-    internal_static_serialization_generated_Update_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_serialization_generated_Update_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_Update_descriptor,
-        new java.lang.String[] { "Modifications", "ValidAtCommitmentNumber", });
-    internal_static_serialization_generated_ADSRootProof_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_serialization_generated_ADSRootProof_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_ADSRootProof_descriptor,
-        new java.lang.String[] { "LastUpdatedProof", "LastUpdate", "FreshnessProof", });
-    internal_static_serialization_generated_ADSProofUpdates_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_serialization_generated_ADSProofUpdates_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_ADSProofUpdates_descriptor,
-        new java.lang.String[] { "Updates", });
-    internal_static_serialization_generated_ADSModification_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_serialization_generated_ADSModification_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_serialization_generated_ADSModification_descriptor,
-        new java.lang.String[] { "AdsId", "NewValue", });
+        internal_static_serialization_generated_LogProof_descriptor,
+        new java.lang.String[] { "LogId", "CreateLogStatement", "SignedStatements", "ProofOfStatements", });
     serialization.generated.MptSerialization.getDescriptor();
   }
 

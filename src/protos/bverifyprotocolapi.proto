@@ -4,121 +4,63 @@ package serialization.generated;
 import "protos/mpt.proto";
 option java_outer_classname = "BVerifyAPIMessageSerialization";
 
+
 /**
 * OVERALL NOTES:
-*	-  	we use protobuf to essentially create a language 
-*		independent API that any programming language 
-*		supported by protobuf can talk to
+*	-  	we use protobuf for efficient serialization of proofs
 *
-*	-   an id is a string representing a unique user id 
-*		that allows each client to look up that user in a 
-* 		pki.  
-*/
-
-
-/**
-*	SERVER API
 */
 
 /**
-*	Request that the server update the required ADSes
-*	Sent by any party to the server. Must include 
-* 	the ADS modifications desired along with the 
-* 	required signatures.
+*	Signed statement to create a new log.
+*	Includes the log creation statement 
+* 	and the required signatures.
 */
-message PerformUpdateRequest {
-	Update update = 1;
-	repeated bytes signatures = 2;
-}
-
-/**
-*	Response to an update request. If accepted the server
-*	promises to commit the update.
-*/
-message PerformUpdateResponse {
-	bool accepted = 1;
-}
-
-/**
-*	Request that the server return the ADS Root
-* 	for the specified ADS ID along with a complete
-*	proof. Anyone can ask the server for a proof 
-*	for a given ADS
-*/
-message ProveADSRootRequest {
-	bytes ads_id = 1;
-}
-
-/**
-*	Response from a request for the an ADS Root
-*	proof. Contains the entire proof for that
-*	ADS Root
-*/
-message ProveADSRootResponse {
-	ADSRootProof proof = 1;
-}
-
-/**
-*	Request for only the Updates for a proof 
-* 	for the specified ADS Root. This is called
-* 	by clients with cached proofs to avoid 
-* 	requiring the server to retransmit the entire proof.
-*	Instead the server only sends the updates for 
-* 	the proof starting at the from_commitment.
-*/
-message GetADSProofUpdatesRequest {
-	bytes ads_id = 1;
-	int32 from_commitment = 2;
-}
-
-/**
-*	Response for a request for proof updates.
-*	Contains the updates required for a client 
-* 	to produce a fresh, valid proof for an 
-* 	ADS Root.
-*/
-message GetADSProofUpdatesResponse {
-	ADSProofUpdates updates = 1;
+message SignedCreateLogStatement {
+	CreateLogStatement create_log_statement = 1;
+	bytes signature = 2;
 }
 
 
-
 /**
-*	MESSAGES, PROOFS, Etc.
+*	Statement to create a new log.
+*	Requires the public keys which must sign any 
+*	log statements and an initial statement (e.g. a name)
+*	for the log.
+*
+*	ID for the new log is
+*			 logID = H(CreateLogStatement)
 */
-
-
-/**
-*	An Update
-*/
-message Update {
-	repeated ADSModification modifications = 1;
-	int32 valid_at_commitment_number = 2;
-}
-/**
-*	A complete ADS Root Proof
-*/
-message ADSRootProof {
-	MerklePrefixTrie last_updated_proof = 1;
-	PerformUpdateRequest last_update = 2;
-	repeated MerklePrefixTrie freshness_proof = 3;
+message CreateLogStatement {
+	bytes controlling_public_key = 1;
+	bytes initial_statement = 2;
 }
 
 /**
-*	Updates to an ADS Root Proof
+*	Log Statement.
 */
-message ADSProofUpdates {
-	repeated MerklePrefixTrie updates = 1;
+message LogStatement { 
+	bytes log_id = 1;
+	bytes statment = 2;
 }
 
 /**
-* 	A Single ADS Modification
+*	Signed Log Statement.
 */
-message ADSModification {
-	bytes ads_id = 1;
-	bytes new_value = 2;
+message SignedLogStatement {
+	LogStatement statement = 1;
+	bytes signature = 2;
 }
 
+/**
+* 	Proof For A Log.
+*/
+message LogProof {
+	bytes log_id = 1;
+	SignedCreateLogStatement create_log_statement = 2;
+ 	repeated SignedLogStatement signed_statements = 3;
+	repeated MerklePrefixTrie proof_of_statements = 4;
+}
 
 
 
