@@ -83,37 +83,37 @@ public class LogManager {
 	private int totalLogStatements;
 
 	public LogManager(int batchSize, boolean requireSigs) {
-		logger.log(Level.INFO, "...creating LogManager");
+		logger.log(Level.FINE, "...creating LogManager");
 		this.logIdToLog = new HashMap<>();
 		this.logIDsWithUncomittedModifications = new HashSet<>();
 		// initialize the stats to
-		logger.log(Level.INFO, "...initializing stats");
+		logger.log(Level.FINE, "...initializing stats");
 		this.totalLogs = 0;
 		this.totalLogStatements = 0;
 		this.uncommittedUpdates = 0;
 		this.TARGET_BATCH_SIZE = batchSize;
 		this.REQUIRE_SIGNATURES = requireSigs;
-		logger.log(Level.INFO, "...initializing empty authentication information");
+		logger.log(Level.FINE, "...initializing empty authentication information");
 		this.mpt = new MPTDictionaryFull();
 		this.mptdeltas = new ArrayList<>();
 		this.commitments = new ArrayList<>();		
-		logger.log(Level.INFO, "...log manager created");
+		logger.log(Level.FINE, "...log manager created");
 	}
 	
 	// safe for concurrent calls
 	public boolean verifySignatureSignedCreateLogStatement(SignedCreateLogStatement signedCreateLogStmt) {
-		return BVerifyLog.verifyCreateLogStatement(signedCreateLogStmt);
+		return BVerifyLog.verifyCreateLogStatement(signedCreateLogStmt, this.REQUIRE_SIGNATURES);
 	}
 	
 	// safe for concurrent calls 
 	public boolean verifyNewLogStatement(SignedLogStatement signedStmt) {
 		byte[] logID = BVerifyLog.getLogID(signedStmt);
 		PublicKey pk = this.logIdToLog.get(ByteBuffer.wrap(logID)).getOwnerPublicKey();
-		return BVerifyLog.verifyLogStatement(signedStmt, pk, logID);
+		return BVerifyLog.verifyLogStatement(signedStmt, pk, logID, this.REQUIRE_SIGNATURES);
 	}
 	
 	public boolean commitNewLog(SignedCreateLogStatement signedCreateStmt) {
-		logger.log(Level.INFO, "...attempting to create a new log");
+		logger.log(Level.INFO, "commit a new log");
 		
 		// signature verification (parallelized)
 		boolean signed = verifySignatureSignedCreateLogStatement(signedCreateStmt);
@@ -159,7 +159,7 @@ public class LogManager {
 	}
 		
 	public boolean commitNewLogStatement(SignedLogStatement newLogStatement) {	
-		logger.log(Level.INFO, "attempting to add a new statement to the log");
+		logger.log(Level.INFO, "commit new statement");
 		
 		// verify the signature (parallelized)
 		boolean signed = this.verifyNewLogStatement(newLogStatement);
@@ -187,7 +187,8 @@ public class LogManager {
 			int correctStatementNumber = log.getLastStatementIndex()+1;
 			if(correctStatementNumber != statementNumber) {
 				logger.log(Level.WARNING, "...rejected because statement #"+statementNumber
-						+" but should be "+correctStatementNumber);
+						+" but should be #"+correctStatementNumber);
+				return false;
 			}
 			log.addLogStatement(newLogStatement);
 			this.logIdToLog.put(logIDKey, log);
@@ -206,7 +207,7 @@ public class LogManager {
 	}
 		
 	public void commit() {
-		logger.log(Level.INFO, "...committing!");
+		logger.log(Level.INFO, "committing!");
 		// print info for benchmarking
 		// and time the commitment
 		int totalNumberOfNodes = this.mpt.countNodes();
@@ -244,7 +245,7 @@ public class LogManager {
 	}
 	
 	public LogProof getLogProof(byte[] logId) {
-		logger.log(Level.INFO, "...log proof request recieved");
+		logger.log(Level.FINE, "log proof request recieved");
 		ByteBuffer key = ByteBuffer.wrap(logId);
 		LogProof.Builder proof = this.logIdToLog.get(key).getProofBuilder();
 		// add the authentication information

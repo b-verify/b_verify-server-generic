@@ -26,7 +26,7 @@ public class BVerifyLog {
 	
 	private final LogProof proof;
 	
-	public BVerifyLog(LogProof proof) throws Exception {
+	public BVerifyLog(LogProof proof, boolean requireSignatures) throws Exception {
 		this.proof = proof;
 		
 		SignedCreateLogStatement signedCreateLogStmt = this.proof.getCreateLogStatement();
@@ -41,15 +41,15 @@ public class BVerifyLog {
 		this.statements = new ArrayList<>();
 		this.commitments = new ArrayList<>();
 		
-		if(!verifyCreateLogStatement(signedCreateLogStmt)) {
-			throw new RuntimeException("create log statement not signed, proof rejected");
+		if(!verifyCreateLogStatement(signedCreateLogStmt, requireSignatures)) {
+			throw new Exception("create log statement not signed, proof rejected");
 		}
 
 		this.witnesses.add(getSignedStatementHash(signedCreateLogStmt));
 		this.statements.add(getStatement(signedCreateLogStmt));
 		
 		for(SignedLogStatement s : proof.getSignedStatementsList()) {
-			if(!verifyLogStatement(s, this.owner, this.logID)) {
+			if(!verifyLogStatement(s, this.owner, this.logID, requireSignatures)) {
 				throw new RuntimeException("bad proof");
 			}
 			this.witnesses.add(getSignedStatementHash(s));
@@ -74,11 +74,11 @@ public class BVerifyLog {
 			byte[] get = path.get(logID);
 			if(!Arrays.equals(currentWitness, get)) {
 				if(currentWitnessIdx+1 >= this.witnesses.size()) {
-					throw new RuntimeException("bad proof");
+					throw new Exception("bad proof, incorrect witnesss");
 				}
 				byte[] nextWitness = this.witnesses.get(currentWitnessIdx+1);
 				if(!Arrays.equals(nextWitness, get)) {
-					throw new RuntimeException("bad proof");
+					throw new Exception("bad proof, incorrect witnesss");
 				}
 				currentWitness = nextWitness;
 				currentWitnessIdx++;
@@ -88,7 +88,11 @@ public class BVerifyLog {
 		
 	}
 	
-	public byte[] getStatement(int i){
+	public List<byte[]> getLogStatements(){
+		return new ArrayList<>(this.statements);
+	}
+	
+	public byte[] getLogStatement(int i){
 		if( i < 0 || i >= this.statements.size()) {
 			return null;
 		}else {
@@ -102,6 +106,10 @@ public class BVerifyLog {
 		}else {
 			return this.commitments.get(i);
 		}
+	}
+	
+	public List<byte[]> getCommittments(){
+		return new ArrayList<>(this.commitments);
 	}
 	
 	@Override
@@ -192,19 +200,25 @@ public class BVerifyLog {
 		return CryptographicDigest.hash(s.toByteArray());
 	}
 	
-	public static boolean verifyCreateLogStatement(SignedCreateLogStatement signedCreateLogStmt) {
-		CreateLogStatement stmt = signedCreateLogStmt.getCreateLogStatement();
-		PublicKey pk = getOwnerPublicKey(stmt);
-		byte[] logID = getLogID(stmt);
-		byte[] signature = signedCreateLogStmt.getSignature().toByteArray();
-		return CryptographicSignature.verify(logID, signature, pk);
+	public static boolean verifyCreateLogStatement(SignedCreateLogStatement signedCreateLogStmt, boolean requireSignatures) {
+		if(requireSignatures) {
+			CreateLogStatement stmt = signedCreateLogStmt.getCreateLogStatement();
+			PublicKey pk = getOwnerPublicKey(stmt);
+			byte[] logID = getLogID(stmt);
+			byte[] signature = signedCreateLogStmt.getSignature().toByteArray();
+			return CryptographicSignature.verify(logID, signature, pk);
+		}
+		return true;
 	}
 	
-	public static boolean verifyLogStatement(SignedLogStatement signedLogStmt, PublicKey owner, byte[] logId) {
+	public static boolean verifyLogStatement(SignedLogStatement signedLogStmt, PublicKey owner, byte[] logId, boolean requireSignatures) {
 		if(Arrays.equals(logId, getLogID(signedLogStmt))) {
-			byte[] toSign = CryptographicDigest.hash(signedLogStmt.getStatement().toByteArray());
-			byte[] signature = signedLogStmt.getSignature().toByteArray();
-			return CryptographicSignature.verify(toSign, signature, owner);
+			if(requireSignatures) {
+				byte[] toSign = CryptographicDigest.hash(signedLogStmt.getStatement().toByteArray());
+				byte[] signature = signedLogStmt.getSignature().toByteArray();
+				return CryptographicSignature.verify(toSign, signature, owner);
+			}
+			return true;
 		}
 		return false;
 	}
