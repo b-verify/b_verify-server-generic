@@ -2,11 +2,15 @@ package server;
 
 import java.nio.ByteBuffer;
 import java.security.PublicKey;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,13 +24,14 @@ import serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement
 
 /**
  * This class is responsible for managing log data.
+ * 
  * It efficiently stores each of the logs and the associated proofs.
  * 
  * Each log consists of the following:
  * 
- * 		[CreateLogStatement, LogStatement, LogStatement .... ]
- * 	
- * and the log ID to identify the log is H(CreateLogStatement)
+ * 	type:	[CreateLogStatement, LogStatement, LogStatement .... ]
+ * 	index:			0					1			2
+ * 	log ID: H(CreateLogStatement)
  * 
  * The proof consists of 
  * 
@@ -50,100 +55,196 @@ public class LogManager {
 	
 	/*
 	 * AUTHENTICATION INFORMATION 
-	 * (MERKLE PREFIX TRIE)
+	 * (Merkle Prefix Trie and previous versions as deltas)
 	 * 
 	 */
-	
-	// current Merkle Prefix Trie
-	private MPTDictionaryFull mpt;
-	// previous versions of the Merkle Prefix Trie (as deltas)
+	private final MPTDictionaryFull mpt;
 	private final List<MPTDictionaryDelta> mptdeltas;
 
-	// commitments
-	// (normally these would be witnessed to Bitcoin
-	// 	since this code is pretty trivial we omit it)
-	private List<byte[]> commitments;
+	/*
+	 * COMMITMENTS
+	 * (normally these would be witnessed to Bitcoin
+	 * 	since the code to create and broadcast 
+	 * 	a Bitcoin tx is pretty trivial we omit it)
+	 */
+	private final List<byte[]> commitments;
+	
+	/*
+	 * PARAMETERS
+	 * 		 - for batching, and performance benchmarking
+	 * TODO also add a timeout so that things always eventually get
+	 * 	committed
+	 */
+	private int uncommittedUpdates;
+	private final Set<ByteBuffer> logIDsWithUncomittedModifications;
+	private final int TARGET_BATCH_SIZE;	
+	private final boolean REQUIRE_SIGNATURES;
+	private int totalLogs;
+	private int totalLogStatements;
 
-	public LogManager() {
+	public LogManager(int batchSize, boolean requireSigs) {
+		logger.log(Level.INFO, "...creating LogManager");
 		this.logIdToLog = new HashMap<>();
+		this.logIDsWithUncomittedModifications = new HashSet<>();
+		// initialize the stats to
+		logger.log(Level.INFO, "...initializing stats");
+		this.totalLogs = 0;
+		this.totalLogStatements = 0;
+		this.uncommittedUpdates = 0;
+		this.TARGET_BATCH_SIZE = batchSize;
+		this.REQUIRE_SIGNATURES = requireSigs;
 		logger.log(Level.INFO, "...initializing empty authentication information");
 		this.mpt = new MPTDictionaryFull();
 		this.mptdeltas = new ArrayList<>();
 		this.commitments = new ArrayList<>();		
-		logger.log(Level.INFO, "log manager created");
+		logger.log(Level.INFO, "...log manager created");
 	}
 	
-	public PublicKey getLogOwners(byte[] logId){
-		return this.logIdToLog.get(ByteBuffer.wrap(logId)).getOwnerPublicKey();
+	// safe for concurrent calls
+	public boolean verifySignatureSignedCreateLogStatement(SignedCreateLogStatement signedCreateLogStmt) {
+		return BVerifyLog.verifyCreateLogStatement(signedCreateLogStmt);
 	}
 	
-	public boolean verifyCreateLog(SignedCreateLogStatement signedCreateStmt) {
-		return BVerifyLogOnServer.verifySignature(signedCreateStmt);
-	}
-	
+	// safe for concurrent calls 
 	public boolean verifyNewLogStatement(SignedLogStatement signedStmt) {
-		byte[] logID = signedStmt.getStatement().getLogId().toByteArray();
+		byte[] logID = BVerifyLog.getLogID(signedStmt);
 		PublicKey pk = this.logIdToLog.get(ByteBuffer.wrap(logID)).getOwnerPublicKey();
-		return BVerifyLogOnServer.verifySignature(signedStmt, pk, logID);
+		return BVerifyLog.verifyLogStatement(signedStmt, pk, logID);
 	}
 	
-	public void commitNewLog(SignedCreateLogStatement signedCreateStmt) {
-		// create a new log 
+	public boolean commitNewLog(SignedCreateLogStatement signedCreateStmt) {
+		logger.log(Level.INFO, "...attempting to create a new log");
+		
+		// signature verification (parallelized)
+		boolean signed = verifySignatureSignedCreateLogStatement(signedCreateStmt);
+		if(!signed && this.REQUIRE_SIGNATURES) {
+			logger.log(Level.WARNING, "...rejected because not properly signed");
+			return false;
+		}
+		
+		// create a new log (parallelized)
 		BVerifyLogOnServer newLog = new BVerifyLogOnServer(signedCreateStmt);
-		this.logIdToLog.put(ByteBuffer.wrap(newLog.getID()), newLog);
-		// update the MPT
-		byte[] witness = BVerifyLog.getWitness(signedCreateStmt);
-		this.mpt.insert(newLog.getID(), witness);
-		logger.log(Level.INFO, "... new log "+Utils.byteArrayAsHexString(newLog.getID())+" created");
+		byte[] logID = newLog.getID();
+		ByteBuffer logIDKey = ByteBuffer.wrap(logID);
+		byte[] witness = BVerifyLog.getSignedStatementHash(signedCreateStmt);
+		
+		// need mutex to actually add the log, and perform final verification 
+		// since concurrent creation of logs or modification of mpt is not safe
+		synchronized(this) {
+			if(this.logIdToLog.containsKey(logIDKey)) {
+				logger.log(Level.WARNING, "...rejected because already created this log");
+				return false;
+			}
+			if(this.logIDsWithUncomittedModifications.contains(logIDKey)) {
+				logger.log(Level.WARNING, "...rejected because already have a create request for this log id");
+				return false;
+			}
+			
+			// accepted, create the log
+			this.logIDsWithUncomittedModifications.add(logIDKey);
+			this.logIdToLog.put(logIDKey, newLog);
+			this.mpt.insert(logID, witness);
+			this.totalLogs++;
+			this.totalLogStatements++;
+			this.uncommittedUpdates++;
+			
+			// commit if we have a full batch
+			if(this.uncommittedUpdates == this.TARGET_BATCH_SIZE) {
+				this.commit();
+			}
+		}
+		
+		logger.log(Level.INFO, "...new log "+Utils.byteArrayAsHexString(logID)+" created");
+		return true;
 	}
 		
-	public void commitNewLogStatement(SignedLogStatement newLogStatement) {
-		// lookup the log
-		byte[] logID = newLogStatement.getStatement().getLogId().toByteArray();
+	public boolean commitNewLogStatement(SignedLogStatement newLogStatement) {	
+		logger.log(Level.INFO, "attempting to add a new statement to the log");
+		
+		// verify the signature (parallelized)
+		boolean signed = this.verifyNewLogStatement(newLogStatement);
+		if(!signed && this.REQUIRE_SIGNATURES) {
+			logger.log(Level.WARNING, "... rejected because not properly signed");
+			return false;
+		}
+		byte[] logID = BVerifyLog.getLogID(newLogStatement);
 		ByteBuffer logIDKey = ByteBuffer.wrap(logID);
-		BVerifyLogOnServer log = this.logIdToLog.get(logIDKey);
-		// add the statement to the log
-		log.addLogStatement(newLogStatement);
-		this.logIdToLog.put(logIDKey, log);
-		// update the MPT
-		byte[] witness = BVerifyLog.getWitness(newLogStatement);
-		this.mpt.insert(logID, witness);
-		logger.log(Level.INFO, "... statement #"+log.numberOfStatements()+" added to log "+Utils.byteArrayAsHexString(log.getID()));
+		int statementNumber = BVerifyLog.getStatementIndex(newLogStatement);
+		
+		// need mutex to actually add it to the log
+		// and check that it has correct index
+		synchronized(this) {
+			if(!this.logIdToLog.containsKey(logIDKey)) {
+				logger.log(Level.WARNING, "...rejected because no such log exists");
+				return false;
+			}
+			if(this.logIDsWithUncomittedModifications.contains(logIDKey)) {
+				logger.log(Level.WARNING, "...rejected because already have an uncommitted statement for this log");
+				return false;
+			}
+			
+			BVerifyLogOnServer log = this.logIdToLog.get(logIDKey);
+			int correctStatementNumber = log.getLastStatementIndex()+1;
+			if(correctStatementNumber != statementNumber) {
+				logger.log(Level.WARNING, "...rejected because statement #"+statementNumber
+						+" but should be "+correctStatementNumber);
+			}
+			log.addLogStatement(newLogStatement);
+			this.logIdToLog.put(logIDKey, log);
+			this.logIDsWithUncomittedModifications.add(logIDKey);
+			byte[] witness = BVerifyLog.getSignedStatementHash(newLogStatement);
+			this.mpt.insert(logID, witness);
+			this.totalLogStatements++;
+			this.uncommittedUpdates++;
+			// commit if we have enough updates
+			if(this.uncommittedUpdates == this.TARGET_BATCH_SIZE) {
+				this.commit();
+			}
+		}
+		logger.log(Level.INFO, "...added statement #"+statementNumber+" to log "+Utils.byteArrayAsHexString(logID));
+		return true;
 	}
-	
-	public int countHashesNeededToCommit() {
-		return this.mpt.countHashesRequiredToCommit();
-	}
-	
-	public int countTotalNumberOfNodes() {
-		return this.mpt.countNodes();
-	}
-	
-	public byte[] commit() {
-		return this.commitParallelized(null);
-	}
-	
-	public byte[] commitParallelized(ExecutorService workers) {
-		logger.log(Level.FINE, "committing!");
-		// save delta and clear any changes
+		
+	public void commit() {
+		logger.log(Level.INFO, "...committing!");
+		// print info for benchmarking
+		// and time the commitment
+		int totalNumberOfNodes = this.mpt.countNodes();
+		int totalNumberOfHashesNeededToCommit = this.mpt.countHashesRequiredToCommit();;
+		logger.log(Level.INFO, "...[total updates to commit: "+this.uncommittedUpdates+
+				" | total nodes in MPT: "+totalNumberOfNodes+
+				" | number of hashes needed to commit: "+totalNumberOfHashesNeededToCommit+
+				"]");
+		long startTime = System.currentTimeMillis();
+		
+		// actual commit procedure
+		// update required data structures, add the commitment
 		MPTDictionaryDelta delta = new MPTDictionaryDelta(this.mpt);
 		this.mptdeltas.add(delta);
 		this.mpt.reset();
 		
-		// calculate a new commitment
-		byte[] commitment;
-		if(workers != null) {
-			commitment = this.mpt.commitmentParallelized(workers);
-		}else {
-			commitment = this.mpt.commitment();
-		}
+		// Normally this commitment would also be witnessed to Bitcoin
+		// but for clarity and modularity, that code must 
+		// be included elsewhere
+		byte[] commitment = this.mpt.commitment();
 		
 		this.commitments.add(commitment);
-		logger.log(Level.INFO, "added commitment #"+this.getCurrentCommitmentNumber()+": "+Utils.byteArrayAsHexString(commitment));
-		return commitment;
+		this.logIDsWithUncomittedModifications.clear();
+		this.uncommittedUpdates = 0;
+		
+		long endTime = System.currentTimeMillis();
+		long duration = endTime - startTime;
+		// print the stats
+		NumberFormat formatter = new DecimalFormat("#0.000");
+		String timeTaken = formatter.format(duration / 1000d)+ " seconds";
+		logger.log(Level.INFO, "...time taken to commit: "+timeTaken);
+		logger.log(Level.INFO, "...[logs: "+this.totalLogs+" | statements: "+this.totalLogStatements
+			+" | at "+LocalDateTime.now()+"]");
+		logger.log(Level.INFO, "...commitment #"+this.getCurrentCommitmentNumber()+": "+Utils.byteArrayAsHexString(commitment));
 	}
 	
 	public LogProof getLogProof(byte[] logId) {
+		logger.log(Level.INFO, "...log proof request recieved");
 		ByteBuffer key = ByteBuffer.wrap(logId);
 		LogProof.Builder proof = this.logIdToLog.get(key).getProofBuilder();
 		// add the authentication information
@@ -153,13 +254,13 @@ public class LogManager {
 		}
 		return proof.build();
 	}
-		
+	
 	public int getCurrentCommitmentNumber() {
 		return this.commitments.size()-1;
 	}
 	
 	public List<byte[]> getCommitments(){
 		return new ArrayList<>(this.commitments);
-	}
+	}	
 	
 }

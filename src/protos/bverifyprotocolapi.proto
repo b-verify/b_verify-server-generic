@@ -12,9 +12,13 @@ option java_outer_classname = "BVerifyAPIMessageSerialization";
 */
 
 /**
-*	Signed statement to create a new log.
+*	Signed statement for creation of a new log.
+*
 *	Includes the log creation statement 
 * 	and the required signatures.
+*
+*	ID for the new log is 
+*			logID = H(CreateLogStatement)
 */
 message SignedCreateLogStatement {
 	CreateLogStatement create_log_statement = 1;
@@ -23,13 +27,17 @@ message SignedCreateLogStatement {
 
 
 /**
-*	Statement to create a new log.
+*	Statement for creation of a new log.
+*
 *	Requires the public keys which must sign any 
-*	log statements and an initial statement (e.g. a name)
-*	for the log.
+*	log statements and an initial statement 
+*	(e.g. a name) for the log.
 *
 *	ID for the new log is
 *			 logID = H(CreateLogStatement)
+*
+*	The initial statement is considered 
+*	to be at index 0.
 */
 message CreateLogStatement {
 	bytes controlling_public_key = 1;
@@ -38,10 +46,19 @@ message CreateLogStatement {
 
 /**
 *	Log Statement.
+*
+*	Includes the statement, the
+*	id of the log to make the statement in and
+*	the index of the statement in the log. 
+*
+*	Statements in the log are indexed 
+* 	from 0, with statement 0 being 
+* 	the create log statement.
 */
 message LogStatement { 
 	bytes log_id = 1;
 	bytes statment = 2;
+	int32 index = 3;
 }
 
 /**
@@ -54,6 +71,9 @@ message SignedLogStatement {
 
 /**
 * 	Proof For A Log.
+*
+*	This is the proof of 
+*	non-equivocation for the log.
 */
 message LogProof {
 	bytes log_id = 1;

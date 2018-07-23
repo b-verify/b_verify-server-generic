@@ -39,9 +39,11 @@ public final class BVerifyAPIMessageSerialization {
   /**
    * <pre>
    **
-   *	Signed statement to create a new log.
+   *	Signed statement for creation of a new log.
    *	Includes the log creation statement 
    * 	and the required signatures.
+   *	ID for the new log is 
+   *			logID = H(CreateLogStatement)
    * </pre>
    *
    * Protobuf type {@code serialization.generated.SignedCreateLogStatement}
@@ -332,9 +334,11 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	Signed statement to create a new log.
+     *	Signed statement for creation of a new log.
      *	Includes the log creation statement 
      * 	and the required signatures.
+     *	ID for the new log is 
+     *			logID = H(CreateLogStatement)
      * </pre>
      *
      * Protobuf type {@code serialization.generated.SignedCreateLogStatement}
@@ -693,12 +697,14 @@ public final class BVerifyAPIMessageSerialization {
   /**
    * <pre>
    **
-   *	Statement to create a new log.
+   *	Statement for creation of a new log.
    *	Requires the public keys which must sign any 
-   *	log statements and an initial statement (e.g. a name)
-   *	for the log.
+   *	log statements and an initial statement 
+   *	(e.g. a name) for the log.
    *	ID for the new log is
    *			 logID = H(CreateLogStatement)
+   *	The initial statement is considered 
+   *	to be at index 0.
    * </pre>
    *
    * Protobuf type {@code serialization.generated.CreateLogStatement}
@@ -965,12 +971,14 @@ public final class BVerifyAPIMessageSerialization {
     /**
      * <pre>
      **
-     *	Statement to create a new log.
+     *	Statement for creation of a new log.
      *	Requires the public keys which must sign any 
-     *	log statements and an initial statement (e.g. a name)
-     *	for the log.
+     *	log statements and an initial statement 
+     *	(e.g. a name) for the log.
      *	ID for the new log is
      *			 logID = H(CreateLogStatement)
+     *	The initial statement is considered 
+     *	to be at index 0.
      * </pre>
      *
      * Protobuf type {@code serialization.generated.CreateLogStatement}
@@ -1229,11 +1237,22 @@ public final class BVerifyAPIMessageSerialization {
      * <code>bytes statment = 2;</code>
      */
     com.google.protobuf.ByteString getStatment();
+
+    /**
+     * <code>int32 index = 3;</code>
+     */
+    int getIndex();
   }
   /**
    * <pre>
    **
    *	Log Statement.
+   *	Includes the statement, the
+   *	id of the log to make the statement in and
+   *	the index of the statement in the log. 
+   *	Statements in the log are indexed 
+   * 	from 0, with statement 0 being 
+   * 	the create log statement.
    * </pre>
    *
    * Protobuf type {@code serialization.generated.LogStatement}
@@ -1250,6 +1269,7 @@ public final class BVerifyAPIMessageSerialization {
     private LogStatement() {
       logId_ = com.google.protobuf.ByteString.EMPTY;
       statment_ = com.google.protobuf.ByteString.EMPTY;
+      index_ = 0;
     }
 
     @java.lang.Override
@@ -1291,6 +1311,11 @@ public final class BVerifyAPIMessageSerialization {
             case 18: {
 
               statment_ = input.readBytes();
+              break;
+            }
+            case 24: {
+
+              index_ = input.readInt32();
               break;
             }
           }
@@ -1335,6 +1360,15 @@ public final class BVerifyAPIMessageSerialization {
       return statment_;
     }
 
+    public static final int INDEX_FIELD_NUMBER = 3;
+    private int index_;
+    /**
+     * <code>int32 index = 3;</code>
+     */
+    public int getIndex() {
+      return index_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1353,6 +1387,9 @@ public final class BVerifyAPIMessageSerialization {
       if (!statment_.isEmpty()) {
         output.writeBytes(2, statment_);
       }
+      if (index_ != 0) {
+        output.writeInt32(3, index_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1368,6 +1405,10 @@ public final class BVerifyAPIMessageSerialization {
       if (!statment_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, statment_);
+      }
+      if (index_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, index_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1389,6 +1430,8 @@ public final class BVerifyAPIMessageSerialization {
           .equals(other.getLogId());
       result = result && getStatment()
           .equals(other.getStatment());
+      result = result && (getIndex()
+          == other.getIndex());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1404,6 +1447,8 @@ public final class BVerifyAPIMessageSerialization {
       hash = (53 * hash) + getLogId().hashCode();
       hash = (37 * hash) + STATMENT_FIELD_NUMBER;
       hash = (53 * hash) + getStatment().hashCode();
+      hash = (37 * hash) + INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1501,6 +1546,12 @@ public final class BVerifyAPIMessageSerialization {
      * <pre>
      **
      *	Log Statement.
+     *	Includes the statement, the
+     *	id of the log to make the statement in and
+     *	the index of the statement in the log. 
+     *	Statements in the log are indexed 
+     * 	from 0, with statement 0 being 
+     * 	the create log statement.
      * </pre>
      *
      * Protobuf type {@code serialization.generated.LogStatement}
@@ -1542,6 +1593,8 @@ public final class BVerifyAPIMessageSerialization {
 
         statment_ = com.google.protobuf.ByteString.EMPTY;
 
+        index_ = 0;
+
         return this;
       }
 
@@ -1566,6 +1619,7 @@ public final class BVerifyAPIMessageSerialization {
         serialization.generated.BVerifyAPIMessageSerialization.LogStatement result = new serialization.generated.BVerifyAPIMessageSerialization.LogStatement(this);
         result.logId_ = logId_;
         result.statment_ = statment_;
+        result.index_ = index_;
         onBuilt();
         return result;
       }
@@ -1612,6 +1666,9 @@ public final class BVerifyAPIMessageSerialization {
         }
         if (other.getStatment() != com.google.protobuf.ByteString.EMPTY) {
           setStatment(other.getStatment());
+        }
+        if (other.getIndex() != 0) {
+          setIndex(other.getIndex());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1694,6 +1751,32 @@ public final class BVerifyAPIMessageSerialization {
       public Builder clearStatment() {
         
         statment_ = getDefaultInstance().getStatment();
+        onChanged();
+        return this;
+      }
+
+      private int index_ ;
+      /**
+       * <code>int32 index = 3;</code>
+       */
+      public int getIndex() {
+        return index_;
+      }
+      /**
+       * <code>int32 index = 3;</code>
+       */
+      public Builder setIndex(int value) {
+        
+        index_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 index = 3;</code>
+       */
+      public Builder clearIndex() {
+        
+        index_ = 0;
         onChanged();
         return this;
       }
@@ -2478,6 +2561,8 @@ public final class BVerifyAPIMessageSerialization {
    * <pre>
    **
    * 	Proof For A Log.
+   *	This is the proof of 
+   *	non-equivocation for the log.
    * </pre>
    *
    * Protobuf type {@code serialization.generated.LogProof}
@@ -2892,6 +2977,8 @@ public final class BVerifyAPIMessageSerialization {
      * <pre>
      **
      * 	Proof For A Log.
+     *	This is the proof of 
+     *	non-equivocation for the log.
      * </pre>
      *
      * Protobuf type {@code serialization.generated.LogProof}
@@ -3842,18 +3929,18 @@ public final class BVerifyAPIMessageSerialization {
       ".CreateLogStatement\022\021\n\tsignature\030\002 \001(\014\"O" +
       "\n\022CreateLogStatement\022\036\n\026controlling_publ" +
       "ic_key\030\001 \001(\014\022\031\n\021initial_statement\030\002 \001(\014\"" +
-      "0\n\014LogStatement\022\016\n\006log_id\030\001 \001(\014\022\020\n\010statm" +
-      "ent\030\002 \001(\014\"a\n\022SignedLogStatement\0228\n\tstate" +
-      "ment\030\001 \001(\0132%.serialization.generated.Log" +
-      "Statement\022\021\n\tsignature\030\002 \001(\014\"\373\001\n\010LogProo" +
-      "f\022\016\n\006log_id\030\001 \001(\014\022O\n\024create_log_statemen" +
-      "t\030\002 \001(\01321.serialization.generated.Signed" +
-      "CreateLogStatement\022F\n\021signed_statements\030" +
-      "\003 \003(\0132+.serialization.generated.SignedLo" +
-      "gStatement\022F\n\023proof_of_statements\030\004 \003(\0132" +
-      ").serialization.generated.MerklePrefixTr" +
-      "ieB B\036BVerifyAPIMessageSerializationb\006pr" +
-      "oto3"
+      "?\n\014LogStatement\022\016\n\006log_id\030\001 \001(\014\022\020\n\010statm" +
+      "ent\030\002 \001(\014\022\r\n\005index\030\003 \001(\005\"a\n\022SignedLogSta" +
+      "tement\0228\n\tstatement\030\001 \001(\0132%.serializatio" +
+      "n.generated.LogStatement\022\021\n\tsignature\030\002 " +
+      "\001(\014\"\373\001\n\010LogProof\022\016\n\006log_id\030\001 \001(\014\022O\n\024crea" +
+      "te_log_statement\030\002 \001(\01321.serialization.g" +
+      "enerated.SignedCreateLogStatement\022F\n\021sig" +
+      "ned_statements\030\003 \003(\0132+.serialization.gen" +
+      "erated.SignedLogStatement\022F\n\023proof_of_st" +
+      "atements\030\004 \003(\0132).serialization.generated" +
+      ".MerklePrefixTrieB B\036BVerifyAPIMessageSe" +
+      "rializationb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3885,7 +3972,7 @@ public final class BVerifyAPIMessageSerialization {
     internal_static_serialization_generated_LogStatement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_serialization_generated_LogStatement_descriptor,
-        new java.lang.String[] { "LogId", "Statment", });
+        new java.lang.String[] { "LogId", "Statment", "Index", });
     internal_static_serialization_generated_SignedLogStatement_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_serialization_generated_SignedLogStatement_fieldAccessorTable = new

@@ -2,7 +2,6 @@ package server;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import crpyto.CryptographicDigest;
@@ -29,24 +28,6 @@ public class BVerifyLogOnServer {
 		this.signedLogStatements = new ArrayList<>();
 	}
 	
-	public static boolean verifySignature(SignedCreateLogStatement createLogStmt) {
-		CreateLogStatement stmt = createLogStmt.getCreateLogStatement();
-		PublicKey pk = CryptographicSignature.loadPublicKey(
-				stmt.getControllingPublicKey().toByteArray());
-		byte[] logID = CryptographicDigest.hash(stmt.toByteArray());
-		byte[] signature = createLogStmt.getSignature().toByteArray();
-		return CryptographicSignature.verify(logID, signature, pk);
-	}
-	
-	public static boolean verifySignature(SignedLogStatement signedLogStmt, PublicKey owner, byte[] logId) {
-		if(Arrays.equals(logId, signedLogStmt.getStatement().getLogId().toByteArray())) {
-			byte[] witness = CryptographicDigest.hash(signedLogStmt.getStatement().toByteArray());
-			byte[] signature = signedLogStmt.getSignature().toByteArray();
-			return CryptographicSignature.verify(witness, signature, owner);
-		}
-		return false;
-	}
-	
 	public void addLogStatement(SignedLogStatement s) {
 		this.signedLogStatements.add(s);
 	}
@@ -59,8 +40,12 @@ public class BVerifyLogOnServer {
 		return this.signedCreateLogStatement;
 	}
 	
-	public int numberOfStatements() {
+	public int getLastStatementIndex() {
 		return this.signedLogStatements.size();
+	}
+	
+	public int getTotalNumberOfStatements() {
+		return this.signedLogStatements.size()+1;
 	}
 	
 	public byte[] getID() {
@@ -80,7 +65,7 @@ public class BVerifyLogOnServer {
 	public String toString() {
 		String res = "<logID: "+Utils.byteArrayAsHexString(this.logID)
 				+" controlled by: "+this.ownerPublicKey
-				+" with "+this.numberOfStatements()+" statements>";
+				+" with "+this.getTotalNumberOfStatements()+" statements>";
 		return res;
 	}
 	

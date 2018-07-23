@@ -1,14 +1,12 @@
 package server;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import serialization.generated.BVerifyAPIMessageSerialization.LogProof;
+import serialization.generated.BVerifyAPIMessageSerialization.SignedCreateLogStatement;
+import serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement;
 
 public class BVerifyServer {
 	private static final Logger logger = Logger.getLogger(BVerifyServer.class.getName());
@@ -16,65 +14,32 @@ public class BVerifyServer {
 	/** 
 	 * 	 Components
 	 */
-	private final BVerifyServerRequestVerifier verifier;
-	private final BVerifyServerUpdateApplier applier;
-	private final ExecutorService applierExecutor;
-	
-	/**
-	 * Shared Data
-	 */
-	
-	/*
-	 * Lock is required for safety
-	 */
-	private final ReadWriteLock lock = new ReentrantReadWriteLock();
-	
-	/*
-	 * Log Manager is responsible for management of the 
-	 * core data structures.
-	 */
 	private final LogManager logManager;
-
-	/*
-	 * This is a shared queue using the producer-consumer 
-	 * design pattern. This queue contains VERIFIED updates to be committed.
-	 * Updates are added as they are verified and commitments are batched 
-	 * for efficiency. 
-	 */
-	private BlockingQueue<Update> updatesToBeCommited;
 		
 	public BVerifyServer(int batchSize, boolean requireSignatures) {
-		logger.log(Level.INFO, "staritng a b_verify server"
+		logger.log(Level.INFO, "...starting a b_verify server"
 				+ " (batch size: "+batchSize+" | require signatures: "+requireSignatures+")");
-		this.logManager = new LogManager();
-		this.updatesToBeCommited = new LinkedBlockingQueue<>();
-		this.verifier = 
-				new BVerifyServerRequestVerifier(this.lock, this.updatesToBeCommited, this.logManager,
-						requireSignatures);
-		// now start up the applier 
-		// which will automatically apply the initializing updates 
-		this.applier = new BVerifyServerUpdateApplier(this.lock,
-						this.updatesToBeCommited, this.logManager, batchSize);
-		
-		this.applierExecutor = Executors.newSingleThreadExecutor();
-		this.applierExecutor.submit(this.applier);	
+		this.logManager = new LogManager(batchSize, requireSignatures);	
 	} 
 	
-	public void shutdown() {
-		logger.log(Level.INFO, "...shutting down the server");
-		this.applier.setShutdown();
-		this.applierExecutor.shutdown();
-		try {
-			this.applierExecutor.awaitTermination(10, TimeUnit.SECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		}
+	/**
+	 * 	API Endpoints (can be exported via JAVA RMI)
+	 */
+	
+	public boolean createNewLog(SignedCreateLogStatement signedCreateLogStatement) {
+		return this.logManager.commitNewLog(signedCreateLogStatement);
 	}
 	
-	// for testing only
-	public BVerifyServerRequestVerifier getRequestHandler() {
-		return this.verifier;
+	public boolean makeLogStatement(SignedLogStatement newSignedStatement) {
+		return this.logManager.commitNewLogStatement(newSignedStatement);
+	}
+	
+	public LogProof getLogProof(byte[] logId) {
+		return this.logManager.getLogProof(logId);
 	}
 
+	public List<byte[]> commitments() {
+		return this.logManager.getCommitments();
+	}
+	
 }

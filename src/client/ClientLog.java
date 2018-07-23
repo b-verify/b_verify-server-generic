@@ -1,6 +1,8 @@
 package client;
 
 import java.security.KeyPair;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.protobuf.ByteString;
 
@@ -15,47 +17,70 @@ import serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement
 public class ClientLog {
 	
 	private final KeyPair keypair;
-	private final byte[] initialStatement;
+	private final List<String> statements;
 	private final byte[] logID;
-	private final CreateLogStatement createLogStmt;
+	private final SignedCreateLogStatement signedCreateLogStmt;
+	private final List<SignedLogStatement> signedLogStmts;
 	
-	public ClientLog(KeyPair kp, byte[] init) {
+	public ClientLog(KeyPair kp, String initStmt) {
 		this.keypair = kp;
-		this.initialStatement = init;
-		this.createLogStmt = CreateLogStatement.newBuilder()
-				.setInitialStatement(ByteString.copyFrom(this.initialStatement))
+		this.signedLogStmts = new ArrayList<>();
+		this.statements = new ArrayList<>();
+		CreateLogStatement createLogStmt = CreateLogStatement.newBuilder()
+				.setInitialStatement(ByteString.copyFrom(initStmt.getBytes()))
 				.setControllingPublicKey(
 						ByteString.copyFrom(this.keypair.getPublic().getEncoded()))
 				.build();
-		this.logID = CryptographicDigest.hash(this.createLogStmt.toByteArray());
+		this.logID = CryptographicDigest.hash(createLogStmt.toByteArray());
+		byte[] signature = CryptographicSignature.sign(this.logID, this.keypair.getPrivate());
+		SignedCreateLogStatement signedCreateLogStmt = SignedCreateLogStatement.newBuilder()
+				.setCreateLogStatement(createLogStmt)
+				.setSignature(ByteString.copyFrom(signature))
+				.build();
+		this.signedCreateLogStmt = signedCreateLogStmt;
+		this.statements.add(initStmt);
 	}
 	
 	public SignedCreateLogStatement getSignedCreateLogStmt() {
-		byte[] signature = CryptographicSignature.sign(this.logID, this.keypair.getPrivate());
-		SignedCreateLogStatement signedCreateLogStmt = SignedCreateLogStatement.newBuilder()
-				.setCreateLogStatement(this.createLogStmt)
-				.setSignature(ByteString.copyFrom(signature))
-				.build();
-		return signedCreateLogStmt;
+		return this.signedCreateLogStmt;
 	}
 	
-	public SignedLogStatement getSignedLogStatement(byte[] newStatement) {
+	public SignedLogStatement addSignedLogStatement(String newStmt) {
+		this.statements.add(newStmt);
 		LogStatement stmt = LogStatement.newBuilder().setLogId(ByteString.copyFrom(this.logID))
-				.setStatment(ByteString.copyFrom(newStatement))
+				.setStatment(ByteString.copyFrom(newStmt.getBytes()))
+				.setIndex(this.getNextStatementIdx())
 				.build();
 		byte[] witness = CryptographicDigest.hash(stmt.toByteArray());
 		byte[] signature = CryptographicSignature.sign(witness, this.keypair.getPrivate());
-		return SignedLogStatement.newBuilder().setStatement(stmt)
+		SignedLogStatement signedLogStmt = SignedLogStatement.newBuilder().setStatement(stmt)
 				.setSignature(ByteString.copyFrom(signature))
 				.build();
+		this.signedLogStmts.add(signedLogStmt);
+		return signedLogStmt;
+	}
+	
+	public SignedLogStatement getSignedLogStatements(int i ) {
+		return this.signedLogStmts.get(i);
 	}
 	
 	public byte[] getLogID() {
 		return this.logID;
 	}
 	
+	private int getNextStatementIdx() {
+		return this.statements.size();
+	}
+	
 	@Override
 	public String toString() {
-		return "<LogID: "+Utils.byteArrayAsHexString(logID)+">";
+		String res = "<LogID: "+Utils.byteArrayAsHexString(logID)+"\n";
+		int i = 0;
+		for(String s : this.statements) {
+			res+="		#"+i+" - "+s+"\n";
+		}
+		res+=">";
+		return res;
 	}
 }
+

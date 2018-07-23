@@ -22,6 +22,7 @@ public class BVerifyLog {
 	private final PublicKey ownerPublicKey;
 	private final List<byte[]> witnesses;
 	private final List<byte[]> statements;
+	private final List<byte[]> commitments;
 	
 	private final LogProof proof;
 	
@@ -37,17 +38,20 @@ public class BVerifyLog {
 		// and calculate the witnesses
 		this.witnesses = new ArrayList<>();
 		this.statements = new ArrayList<>();
+		this.commitments = new ArrayList<>();
 		
-		if(!verifySignature(signedCreateLogStmt)) {
+		if(!verifyCreateLogStatement(signedCreateLogStmt)) {
 			throw new RuntimeException("bad proof");
 		}
-		this.witnesses.add(getWitness(signedCreateLogStmt));
+
+		this.witnesses.add(getSignedStatementHash(signedCreateLogStmt));
 		this.statements.add(getStatement(signedCreateLogStmt));
+		
 		for(SignedLogStatement s : proof.getSignedStatementsList()) {
-			if(!verifySignature(s, this.ownerPublicKey, this.logID)) {
+			if(!verifyLogStatement(s, this.ownerPublicKey, this.logID)) {
 				throw new RuntimeException("bad proof");
 			}
-			this.witnesses.add(getWitness(s));
+			this.witnesses.add(getSignedStatementHash(s));
 			this.statements.add(getStatement(s));
 		}
 		
@@ -61,11 +65,11 @@ public class BVerifyLog {
 		}
 		
 		// second check the Merkle proofs
-		MPTDictionaryPartial path = MPTDictionaryPartial.deserialize(proof.getProofOfStatements(0));
+		MPTDictionaryPartial path = MPTDictionaryPartial.deserialize(proof.getProofOfStatements(0));		
 		System.out.println("PROOFS: ");
 		System.out.println("index: 0");
 		byte[] getInit = path.get(logID);
-		byte[] cmtInit = path.commitment();
+		byte[] cmtInit = path.commitment();	
 		if(getInit != null) {
 			System.out.println("Get --> "+Utils.byteArrayAsHexString(getInit));
 		}else {
@@ -77,6 +81,7 @@ public class BVerifyLog {
 			System.out.println("index: "+i);
 			byte[] get = path.get(logID);
 			byte[] cmt = path.commitment();
+			this.commitments.add(cmt);
 			if(get != null) {
 				System.out.println("Get --> "+Utils.byteArrayAsHexString(get));
 			}else {
@@ -85,6 +90,26 @@ public class BVerifyLog {
 			System.out.println("CMT --> "+Utils.byteArrayAsHexString(cmt));
 		}
 		
+	}
+	
+	public void printLog() {
+		int i = 0;
+		System.out.println("LOG ID: "+Utils.byteArrayAsHexString(this.logID));
+		for(byte[] statement : this.statements) {
+			System.out.println("--> Statement #"+i+": "+bytesToString(statement));
+		}
+	}
+	
+	public static String bytesToString(byte[] bs) {
+		return new String(bs, Charset.forName("UTF-8"));
+	}
+	
+	public static int getStatementIndex(SignedLogStatement s) {
+		return getStatementIndex(s.getStatement());
+	}
+	
+	public static int getStatementIndex(LogStatement s) {
+		return s.getIndex();
 	}
 	
 	public static byte[] getStatement(SignedCreateLogStatement s) {
@@ -135,15 +160,15 @@ public class BVerifyLog {
 		return CryptographicDigest.hash(s.toByteArray());
 	}
 	
-	public static byte[] getWitness(SignedLogStatement s) {
+	public static byte[] getSignedStatementHash(SignedLogStatement s) {
 		return CryptographicDigest.hash(s.toByteArray());
 	}
 	
-	public static byte[] getWitness(SignedCreateLogStatement s) {
+	public static byte[] getSignedStatementHash(SignedCreateLogStatement s) {
 		return CryptographicDigest.hash(s.toByteArray());
 	}
 	
-	public static boolean verifySignature(SignedCreateLogStatement signedCreateLogStmt) {
+	public static boolean verifyCreateLogStatement(SignedCreateLogStatement signedCreateLogStmt) {
 		CreateLogStatement stmt = signedCreateLogStmt.getCreateLogStatement();
 		PublicKey pk = getOwnerPublicKey(stmt);
 		byte[] logID = getLogID(stmt);
@@ -151,7 +176,7 @@ public class BVerifyLog {
 		return CryptographicSignature.verify(logID, signature, pk);
 	}
 	
-	public static boolean verifySignature(SignedLogStatement signedLogStmt, PublicKey owner, byte[] logId) {
+	public static boolean verifyLogStatement(SignedLogStatement signedLogStmt, PublicKey owner, byte[] logId) {
 		if(Arrays.equals(logId, getLogID(signedLogStmt))) {
 			byte[] toSign = CryptographicDigest.hash(signedLogStmt.getStatement().toByteArray());
 			byte[] signature = signedLogStmt.getSignature().toByteArray();
