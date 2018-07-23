@@ -19,7 +19,7 @@ import serialization.generated.BVerifyAPIMessageSerialization.SignedLogStatement
 public class BVerifyLog {
 
 	private final byte[] logID;
-	private final PublicKey ownerPublicKey;
+	private final PublicKey owner;
 	private final List<byte[]> witnesses;
 	private final List<byte[]> statements;
 	private final List<byte[]> commitments;
@@ -31,73 +31,97 @@ public class BVerifyLog {
 		
 		SignedCreateLogStatement signedCreateLogStmt = this.proof.getCreateLogStatement();
 		this.logID = getLogID(signedCreateLogStmt);
-		this.ownerPublicKey = getOwnerPublicKey(signedCreateLogStmt);
-		// now check the proof		
+		this.owner = getOwnerPublicKey(signedCreateLogStmt);
 		
-		// first check the signatures on the statements
-		// and calculate the witnesses
+		// PART 1: 
+		// go through the log statements, 
+		// verify the signatures, and compute the witnesses
+		
 		this.witnesses = new ArrayList<>();
 		this.statements = new ArrayList<>();
 		this.commitments = new ArrayList<>();
 		
 		if(!verifyCreateLogStatement(signedCreateLogStmt)) {
-			throw new RuntimeException("bad proof");
+			throw new RuntimeException("create log statement not signed, proof rejected");
 		}
 
 		this.witnesses.add(getSignedStatementHash(signedCreateLogStmt));
 		this.statements.add(getStatement(signedCreateLogStmt));
 		
 		for(SignedLogStatement s : proof.getSignedStatementsList()) {
-			if(!verifyLogStatement(s, this.ownerPublicKey, this.logID)) {
+			if(!verifyLogStatement(s, this.owner, this.logID)) {
 				throw new RuntimeException("bad proof");
 			}
 			this.witnesses.add(getSignedStatementHash(s));
 			this.statements.add(getStatement(s));
 		}
 		
-		System.out.println("STATEMENTS: ");
-		for(byte[] stmt : this.statements) {
-			System.out.println(" --> "+new String(stmt, Charset.forName("UTF-8")));
-		}
-		System.out.println("WITNESSES: ");
-		for(byte[] witness : this.witnesses) {
-			System.out.println(" --> "+Utils.byteArrayAsHexString(witness));
-		}
+		// PART 2:
+		// check the Merkle proofs and calcualte the 
+		// commitments (the commitments should match what 
+		// has been witnessed in Bitcoin)
 		
-		// second check the Merkle proofs
-		MPTDictionaryPartial path = MPTDictionaryPartial.deserialize(proof.getProofOfStatements(0));		
-		System.out.println("PROOFS: ");
-		System.out.println("index: 0");
-		byte[] getInit = path.get(logID);
-		byte[] cmtInit = path.commitment();	
-		if(getInit != null) {
-			System.out.println("Get --> "+Utils.byteArrayAsHexString(getInit));
-		}else {
-			System.out.println("Get --> NULL");
+		MPTDictionaryPartial path = MPTDictionaryPartial.deserialize(proof.getProofOfStatements(0));	
+		// server should start with no logs
+		byte[] currentWitness = null;
+		int currentWitnessIdx = -1;
+		if(!(currentWitness == path.get(logID))) {
+			throw new RuntimeException("bad proof");
 		}
-		System.out.println("CMT --> "+Utils.byteArrayAsHexString(cmtInit));
+		this.commitments.add(path.commitment());
 		for(int i = 1; i < proof.getProofOfStatementsCount(); i++) {
 			path.processUpdates(proof.getProofOfStatements(i));
-			System.out.println("index: "+i);
 			byte[] get = path.get(logID);
-			byte[] cmt = path.commitment();
-			this.commitments.add(cmt);
-			if(get != null) {
-				System.out.println("Get --> "+Utils.byteArrayAsHexString(get));
-			}else {
-				System.out.println("Get --> NULL");
+			if(!Arrays.equals(currentWitness, get)) {
+				if(currentWitnessIdx+1 >= this.witnesses.size()) {
+					throw new RuntimeException("bad proof");
+				}
+				byte[] nextWitness = this.witnesses.get(currentWitnessIdx+1);
+				if(!Arrays.equals(nextWitness, get)) {
+					throw new RuntimeException("bad proof");
+				}
+				currentWitness = nextWitness;
+				currentWitnessIdx++;
 			}
-			System.out.println("CMT --> "+Utils.byteArrayAsHexString(cmt));
+			this.commitments.add(path.commitment());
 		}
 		
 	}
 	
-	public void printLog() {
-		int i = 0;
-		System.out.println("LOG ID: "+Utils.byteArrayAsHexString(this.logID));
-		for(byte[] statement : this.statements) {
-			System.out.println("--> Statement #"+i+": "+bytesToString(statement));
+	public byte[] getStatement(int i){
+		if( i < 0 || i >= this.statements.size()) {
+			return null;
+		}else {
+			return this.statements.get(i);
 		}
+	}
+	
+	public byte[] getCommitment(int i){
+		if( i < 0 || i >= this.commitments.size()) {
+			return null;
+		}else {
+			return this.commitments.get(i);
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String res = "<LogID: "+Utils.byteArrayAsHexString(this.logID)+"\n"
+				+"Owner: \n		"+this.owner.toString()+"\n";
+		res+="Statements: \n";
+		int i = 0;
+		for(byte[] s : this.statements) {
+			res+="		S"+i+" - "+bytesToString(s)+"\n";
+			i++;
+		}
+		res+="Commitments: \n";
+		i = 0;
+		for(byte[] c : this.commitments) {
+			res+="		C"+i+" - "+Utils.byteArrayAsHexString(c)+"\n";
+			i++;
+		}
+		res+=">";
+		return res;
 	}
 	
 	public static String bytesToString(byte[] bs) {

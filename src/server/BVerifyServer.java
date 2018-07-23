@@ -20,6 +20,7 @@ public class BVerifyServer {
 		logger.log(Level.INFO, "...starting a b_verify server"
 				+ " (batch size: "+batchSize+" | require signatures: "+requireSignatures+")");
 		this.logManager = new LogManager(batchSize, requireSignatures);	
+		this.logManager.commit();
 	} 
 	
 	/**
